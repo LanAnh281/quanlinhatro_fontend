@@ -1,16 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
-import loaiPhong from "@/views/loaiPhong.vue";
+import admin from "@/views/admin.vue";
 
 const routes=[
     {
         path:"/",
-        name:"loaiphong",
-        component: loaiPhong,
+        name:"admin",
+        component: admin,
     },
 ];
 
 const router=createRouter({
-    history: createRouter(import.meta.env.BASE_URL),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes,
 });
 
