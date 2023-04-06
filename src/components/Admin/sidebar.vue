@@ -1,17 +1,19 @@
 <template>
   <div>
     <ul>
-      <li class="header ">Admin</li>
-      <li>Hợp đồng</li>
+      <li class="header">Admin</li>
+      <li>
+        <router-link :to="{ name: 'hopdong' }"> Hợp đồng</router-link>
+       
+      </li>
       <li>Khách hàng</li>
       <li>
         Loại phòng
-        <ul>
-          <li>
-            <router-link :to="{ name: 'admin' }"></router-link>
-            Phòng 1
-          </li>
-          <li>Phòng 2</li>
+        <ul >
+          <!-- <li v-for="lp in loaiphong" :key="lp.id">
+            <router-link :to="{ name: 'edit' }"></router-link>
+            {{ lp.tenloai }}
+          </li> -->
         </ul>
       </li>
       <li>Hóa đơn</li>
@@ -19,9 +21,40 @@
     </ul>
   </div>
 </template>
-<script></script>
+<script>
+import loaiphongService from "@/services/loaiphong.service";
+
+export default {
+  name:"Sidebar",
+  comments:{},
+  data(){
+      const layDSLP=async()=>{
+          try{
+            this.loaiphong=await loaiphongService.layDSLP();
+
+          }catch(error){
+            console.log(error);
+          }
+        }
+      return{
+        loaiphong: layDSLP(),
+      }
+      
+      
+    },
+}</script>
 
 <style scoped>
+a{
+  color:#fff;
+  position: relative;
+  display: block;
+}
+li:hover a{
+  color:#2f89fc;
+  text-decoration: none;
+  
+}
 .header {
   padding: 17px 0;
   text-align: center;
@@ -47,6 +80,7 @@ li {
   margin-top: 0px;
   color: #fff;
   display: block;
+  
 }
 
 li:hover {
@@ -56,6 +90,7 @@ li:hover {
   border-top-right-radius: 10px 10px;
   border-bottom-right-radius: 10px 10px;
   cursor: pointer;
+  
 }
 li ul {
   width: 100%;
