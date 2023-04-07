@@ -34,7 +34,7 @@
           <fa
             icon="trash"
             class="mr-2 style trash"
-            @click="onDelete(lp.maloai)"
+            v-on:click="onDelete(lp.maloai)"
           ></fa>
           <!-- </router-link> -->
         </td>
