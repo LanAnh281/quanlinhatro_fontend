@@ -19,9 +19,13 @@
     "bootstrap-vue": "^2.23.1",
     "jquery": "^3.6.4",
     "popper.js": "^1.16.1",
+    "tup": "^0.0.0",
     "uuid": "^9.0.0",
+    "vee-validate": "^4.8.4",
     "vue": "^3.2.47",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue-sweetalert2": "^5.0.5",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

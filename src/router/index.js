@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
-import edit from "@/views/edit.vue";
+import edit from "../components/Admin/edit.vue";
 import loaiphong from "../components/Admin/RomType.vue";
 import hopdong from "../components/Admin/hopdong.vue";
 const routes=[
@@ -10,9 +10,15 @@ const routes=[
         component: admin,loaiphong,
     },
     {
-        path:"/edit",
-        name:"edit",
-        component:edit,
+        path:"/loaiphong/them",
+        name:"loaiphong.them",
+        component:()=>import('../components/Admin/AddRoomType.vue'),
+    },
+    {
+        path:"/loaiphong/chinhsua/:maloai",
+        name:"loaiphong.chinhsua",
+        component:()=>import('../components/Admin/AddRoomType.vue'),
+        // props:true
     },
     {
         path:"/loaiphong",

@@ -1,4 +1,8 @@
 <template>
+  <router-link :to="{ name: 'loaiphong.them' }">
+    <button class="btn btn-primary">+</button>
+  </router-link>
+
   <table class="table">
     <thead>
       Danh sách loại phòng
@@ -10,19 +14,29 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="lp in loaiphong" :key="lp.id">
+      <tr :key="index" v-for="(lp, index) in roomtype">
         <td>{{ lp.tenloai }}</td>
         <td>{{ lp.dientich }}</td>
         <td>{{ lp.giaphong }}</td>
         <td>
           <!-- <fa :icon="['fab','trash']"></fa> -->
-          <router-link :to="{ name: 'hopdong' }" class="mr-2" :LPProps="lp.id">
+          <router-link :to="{ name: 'hopdong' }" :LPProps="lp.id">
             <fa icon="info" class="style info"></fa>
           </router-link>
-          <router-link :to="{ name: 'edit' }" class="mr-2">
+          &nbsp;
+          <router-link
+            :to="{ name: 'loaiphong.chinhsua', params: { maloai: lp.maloai } }"
+          >
             <fa icon="edit"></fa>
           </router-link>
-          <fa icon="trash" class="mr-2 style trash"></fa>
+          &nbsp;
+          <!-- <router-link :to="{ name: '' }"> -->
+          <fa
+            icon="trash"
+            class="mr-2 style trash"
+            @click="onDelete(lp.maloai)"
+          ></fa>
+          <!-- </router-link> -->
         </td>
       </tr>
     </tbody>
@@ -30,29 +44,38 @@
 </template>
 
 <script>
-import loaiphongService from "@/services/loaiphong.service";
+import loaiphongService from "../../services/loaiphong.service";
 export default {
   name: "DSLP",
   components: {},
   data() {
-    const layDSLP = async () => {
-      try {
-        this.loaiphong = await loaiphongService.layDSLP();
-      } catch (error) {
-        console.log(error);
-      }
-    };
     return {
-      loaiphong: layDSLP(),
+      roomtype: [],
     };
   },
-  method: {
-    async layDSLP() {
-      try {
-        this.loaiphong = await loaiphongService.layDSLP();
-      } catch (error) {
-        console.log(error);
-      }
+  created() {
+    this.getAll();
+  },
+  methods: {
+    async getAll() {
+      this.roomtype = await loaiphongService.layDSLP();
+    },
+    onDelete(roomtypeID) {
+      this.$swal
+        .fire({
+          title: "Bạn có muốn xóa ?",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "OK",
+        })
+        .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            loaiphongService.xoaLP(roomtypeID);
+            this.$swal.fire("Đã xóa!", "", "success");
+            this.getAll();
+          }
+        });
     },
   },
 };
