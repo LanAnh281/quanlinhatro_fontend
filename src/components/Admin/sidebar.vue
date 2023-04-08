@@ -15,7 +15,10 @@
         <router-link :to="{ name: 'loaiphong' }"> Loại phòng</router-link>        
       </li>
       <li>Hóa đơn</li>
-      <li>Phiếu gia hạn</li>
+      <li>
+        <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>        
+
+      </li>
     </ul>
   </div>
 </template>

@@ -26,6 +26,12 @@ const routes=[
         component:()=>import('../components/Admin/NhaTro.vue'),
         
     },
+    {
+        path:"/phieugiahan",
+        name:"phieugiahan",
+        component:()=>import('../components/Admin/PhieuGiaHan.vue'),
+        
+    },
     //user
     {
         path:"/user",

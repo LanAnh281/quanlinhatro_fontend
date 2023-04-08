@@ -1,7 +1,7 @@
 <template>
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
-    <Header></Header>
+    <Header :silderProps="'Khách hàng'"></Header>
 
     <h3 class="text-center mt-5 mb-3">Danh sách khách hàng</h3>
     <router-link :to="{ name: '' }" >

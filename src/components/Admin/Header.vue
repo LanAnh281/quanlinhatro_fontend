@@ -1,7 +1,13 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div><fa icon="home"></fa>/??</div>
+      <div >
+        <router-link :to="{ name: 'admin' }">
+          <fa icon="home"></fa>
+        </router-link>
+
+        /<span style="font-weight: 500;">{{silderProps}}</span>
+      </div>
 
       <div>
         <ul>
@@ -11,8 +17,7 @@
 
             <ul>
               <li>
-                <router-link :to="{name:'nhatro'}">Nhà Trọ</router-link>
-                
+                <router-link :to="{ name: 'nhatro' }">Nhà Trọ</router-link>
               </li>
               <li>Đổi mật khẩu</li>
               <li @click="logout">Đăng xuất</li>
@@ -27,24 +32,26 @@
 <script>
 export default {
   name: "Header",
-  methods:{
+  props:['silderProps'],
+  methods: {
     delete_cookie(name) {
-  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      document.cookie =
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    },
+    logout() {
+      console.log("logout");
+      document.cookie =
+        "token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      this.$router.push({ name: "login" });
+    },
   },
-  logout(){
-      console.log('logout');
-      document.cookie = 'token' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';  
-      this.$router.push({name:"login"});
-    }
-}
-}
+};
 </script>
 
 <style scoped>
-li:hover a{
-  color:#2f89fc;
+li:hover a {
+  color: #2f89fc;
   text-decoration: none;
-  
 }
 .navbar {
   height: 60px;

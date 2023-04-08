@@ -1,7 +1,7 @@
 <template>
     <Sidebar class="col-2 px-0"></Sidebar>
       <div class="col-10 px-2">
-        <Header></Header>
+        <Header :silderProps="'Hợp đồng'"></Header>
         <HopDong></HopDong>
       </div>
   

@@ -1,18 +1,33 @@
 <template>
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
-    <Header></Header>
+    <Header :silderProps="'Nhà Trọ'"></Header>
 
     <h3 class="text-center mt-5 mb-3">Thông tin nhà trọ</h3>
-    <router-link :to="{ name: '' }">
+    <router-link :to="{ name: '' }" class="mr-5" style="float:right">
       <button class="btn btn-primary">Cập nhật</button>
     </router-link>
 
-    <div>
-      <p><span>Tên nhà trọ:</span> {{ nhatro[0].tennhatro }}</p>
-      <p><span>Họ tên chủ trọ:</span> {{  nhatro[0].hoten }}</p>
-      <p><span>SĐT:</span> {{  nhatro[0].sdt }}</p>
-      <p><span>Địa chỉ:</span> {{  nhatro[0].diachi }}</p>
+    <div v-for="(nt, index) in nhatro" :key="index">
+      <table class="table " v-for="(nt,index) in nhatro" :key="index">
+        <tr>
+          <th scope="col">Tên nhà trọ</th>
+          <td scope="col">:&nbsp;{{nt.tennhatro}}</td>
+        </tr>
+
+        <tr>
+          <th scope="col">Họ tên</th>
+          <td scope="col">:&nbsp;{{nt.hoten}}</td>
+        </tr>
+        <tr>
+          <th scope="col">SĐT</th>
+          <td scope="col">:&nbsp;{{nt.sdt}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Địa chỉ</th>
+          <td scope="col">:&nbsp; {{nt.diachi}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -26,7 +41,7 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
-      nhatro: { type: Object },
+      nhatro: { type: Array },
     };
   },
   created() {
@@ -35,7 +50,7 @@ export default {
   methods: {
     async TTNT() {
       this.nhatro = await nhatroService.layTTNT();
-      console.log(this.nhatro);
+     
     },
   },
 };
@@ -55,5 +70,15 @@ export default {
 
 .trash {
   color: red;
+}
+.table{
+    left :35% ;
+}
+ td,th{
+    border: 1px solid white ;
+}
+th{
+    width: 160px;
+    font-weight: bold;
 }
 </style>
