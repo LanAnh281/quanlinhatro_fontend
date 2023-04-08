@@ -3,18 +3,16 @@
     <ul>
       <li class="header">Admin</li>
       <li>
-        <router-link :to="{ name: 'hopdong' }"> Hợp đồng</router-link>
+        <router-link :to="{ name: 'admin' }"> Hợp đồng</router-link>
+      </li>
+      <li>
+        <router-link :to="{name:'khachhang'}">
+           Khách hàng
+        </router-link>
        
       </li>
-      <li>Khách hàng</li>
       <li>
-        Loại phòng
-        <ul >
-          <!-- <li v-for="lp in loaiphong" :key="lp.id">
-            <router-link :to="{ name: 'edit' }"></router-link>
-            {{ lp.tenloai }}
-          </li> -->
-        </ul>
+        <router-link :to="{ name: 'loaiphong' }"> Loại phòng</router-link>        
       </li>
       <li>Hóa đơn</li>
       <li>Phiếu gia hạn</li>

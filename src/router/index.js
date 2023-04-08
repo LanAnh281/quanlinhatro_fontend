@@ -1,18 +1,47 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
-
-import loaiphong from "../components/Admin/RomType.vue";
-import hopdong from "../components/Admin/hopdong.vue";
 const routes=[
+    //login
     {
         path:"/",
         name:"login",
         component: ()=>import('../components/login.vue'),
     },
+    //admin
     {
         path:"/admin",
         name:"admin",
-        component: admin,
+        component:admin,
+        
+    },
+    {
+        path:"/khachhang",
+        name:"khachhang",
+        component:()=>import('../components/Admin/KhachHang.vue'),
+        
+    },
+    {
+        path:"/nhatro",
+        name:"nhatro",
+        component:()=>import('../components/Admin/NhaTro.vue'),
+        
+    },
+    //user
+    {
+        path:"/user",
+        name:"user",
+        component: ()=>import('../components/user/userHeader.vue'),
+    },
+    //loaiphong admin
+    {
+        path:"/loaiphong",
+        name:"loaiphong",
+        component:()=>import('../components/Admin/RoomType.vue'),
+    },
+    {
+        path:"/loaiphong/chitiet/:maloai",
+        name:"loaiphong.chitiet",
+        component:()=>import('../components/Admin/RoomTypeDetail.vue'),
     },
     {
         path:"/loaiphong/them",
@@ -25,19 +54,6 @@ const routes=[
         component:()=>import('../components/Admin/AddRoomType.vue'),
         // props:true
     },
-    {
-        path:"/loaiphong",
-        name:"loaiphong",
-        component:loaiphong,
-    },
-    {
-        path:"/hopdong",
-        name:"hopdong",
-        component:hopdong,
-    },
-    
-
-
 ];
 
 const router=createRouter({

@@ -1,19 +1,37 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
-    <div class="col-10 px-2">
-      <Header></Header>
-      <RoomType></RoomType>
-    </div>
+    <Sidebar class="col-2 px-0"></Sidebar>
+      <div class="col-10 px-2">
+        <Header></Header>
+        <HopDong></HopDong>
+      </div>
+  
 </template>
 
 <script>
-import RoomType from "../components/Admin/RomType.vue";
+
 import Header from '../components/Admin/Header.vue';
 import Sidebar from '../components/Admin/sidebar.vue';
+import HopDong from '../components/Admin/HopDong.vue';
+import loginServices from "../services/login.services";
 
 export default {
   name: "DSLP",
-  components: {Header,Sidebar,RoomType },
+  components: {Header,Sidebar, HopDong},
+  data(){
+    return{
+      quyen:{
+        message:'',
+      }
+    }
+  },
+  async created() {
+    this.quyen= await loginServices.Quyen();
+   
+    if(this.quyen.message=='chuadangnhap'){
+      this.$router.push({ name: "login" });
+    }
+  },
+  
 };
 </script>
 

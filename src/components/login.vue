@@ -64,6 +64,9 @@ export default {
         matk: "",
         matkhau: "",
       },
+      quyen:{
+        message:'',
+      }
     };
   },
   methods: {
@@ -109,8 +112,12 @@ export default {
         this.trangthai = await loginService.KTDN(this.user);
         if (this.trangthai.message == "success") {
         this.setCookie('token',this.trangthai.token,1);//1 ngày
-        
-          this.$router.push({ name: "admin" });
+          this.quyen= await loginService.Quyen();
+          if(this.quyen.message=='chutro')
+            this.$router.push({ name: "admin" });
+          else 
+          this.$router.push({ name: "user" });
+
         } else {
           this.$swal.fire({
             title: "Bạn đã đăng nhập thất bại",

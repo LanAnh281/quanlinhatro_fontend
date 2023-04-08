@@ -10,9 +10,12 @@
             <fa icon="chevron-down" class="pl-2"></fa>
 
             <ul>
-              <li>Nhà Trọ</li>
+              <li>
+                <router-link :to="{name:'nhatro'}">Nhà Trọ</router-link>
+                
+              </li>
               <li>Đổi mật khẩu</li>
-              <li>Đăng xuất</li>
+              <li @click="logout">Đăng xuất</li>
             </ul>
           </li>
         </ul>
@@ -24,10 +27,25 @@
 <script>
 export default {
   name: "Header",
-};
+  methods:{
+    delete_cookie(name) {
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  },
+  logout(){
+      console.log('logout');
+      document.cookie = 'token' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';  
+      this.$router.push({name:"login"});
+    }
+}
+}
 </script>
 
 <style scoped>
+li:hover a{
+  color:#2f89fc;
+  text-decoration: none;
+  
+}
 .navbar {
   height: 60px;
   display: flex;

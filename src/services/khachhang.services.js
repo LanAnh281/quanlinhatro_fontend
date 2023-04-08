@@ -1,12 +1,12 @@
 import createApiClient from "./api.services.js";
 
-class hopdongService{
-    constructor(baseUrl="/api/hopdong"){
+class khachhangService{
+    constructor(baseUrl="/api/khachtro"){
         this.api=createApiClient(baseUrl);
     }
-    async layDSHD(){
+    async layDSKH(){
         return (await this.api.get("/")).data;
     };
     
 }
-export default new hopdongService();
+export default new khachhangService();

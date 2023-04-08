@@ -1,12 +1,12 @@
 import createApiClient from "./api.services.js";
 
-class hopdongService{
-    constructor(baseUrl="/api/hopdong"){
+class nhatroService{
+    constructor(baseUrl="/api/nhatro"){
         this.api=createApiClient(baseUrl);
     }
-    async layDSHD(){
+    async layTTNT(){
         return (await this.api.get("/")).data;
     };
     
 }
-export default new hopdongService();
+export default new nhatroService();
