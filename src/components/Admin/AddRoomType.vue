@@ -1,7 +1,10 @@
 <template>
-  <div>
+  <Sidebar class="col-2 px-0"></Sidebar>
+    <div class="col-10 px-2">
+      <Header></Header>
+     
     <form v-on:submit.prevent="save">
-      <h3>Thêm loại phòng</h3>
+      <h3>Thông tin loại phòng</h3>
       <div class="form-group">
         <label for="tenloai">Tên loại</label>
         <input
@@ -60,8 +63,13 @@
 </template>
 <script>
 import loaiphongService from "../../services/loaiphong.service";
+import Header from './Header.vue';
+import Sidebar from './sidebar.vue';
+
+
 export default {
   name: "AddRoomType",
+  components: {Header,Sidebar },
   data() {
     return {
       errors: {

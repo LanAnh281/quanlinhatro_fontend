@@ -1,13 +1,18 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
-import edit from "../components/Admin/edit.vue";
+
 import loaiphong from "../components/Admin/RomType.vue";
 import hopdong from "../components/Admin/hopdong.vue";
 const routes=[
     {
         path:"/",
+        name:"login",
+        component: ()=>import('../components/login.vue'),
+    },
+    {
+        path:"/admin",
         name:"admin",
-        component: admin,loaiphong,
+        component: admin,
     },
     {
         path:"/loaiphong/them",

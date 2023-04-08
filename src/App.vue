@@ -1,35 +1,23 @@
 <template>
   <div class="container mt-3 row">
-    <Sidebar class="col-2 px-0"></Sidebar>
-    <div class="col-10 px-2">
-      <Header></Header>
-      <router-view/>
-    </div>
-    
-   
+    <router-view />
   </div>
-  
-  
-
 </template>
 
 <script>
-import Header from './components/Admin/Header.vue';
-import Sidebar from './components/Admin/sidebar.vue';
-
-
-  export default{
-    name: "App",
-    components:{Header,Sidebar},
-  }
+export default {
+  name: "App",
+};
 </script>
 <style>
-  #app{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    display: block !important;
-    
-  }
-  body{
-    display: block !important;
-  }
+#app {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: block !important;
+}
+body {
+  display: block !important;
+}
+isActive {
+  display: none;
+}
 </style>
