@@ -7,8 +7,8 @@ class phieugiahanService{
     async layDSP(){
         return (await this.api.get("/")).data;
     };
-    async chinhsuaTT(maphieu){
-        return (await this.api.put('/')).data;
+    async chinhsuaTT(data){
+        return (await this.api.put('/',data)).data;
     };
     
 }

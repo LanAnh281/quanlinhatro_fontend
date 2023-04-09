@@ -30,8 +30,8 @@ const routes=[
         path:"/phieugiahan",
         name:"phieugiahan",
         component:()=>import('../components/Admin/PhieuGiaHan.vue'),
-        
     },
+    
     //user
     {
         path:"/user",

@@ -121,6 +121,7 @@ export default {
     },
     async save() {
       if (this.validate()) {
+        console.log(this.roomtype);
         if (this.$route.params.maloai) {
           console.log('router',this.$route.params.maloai);
           await loaiphongService
