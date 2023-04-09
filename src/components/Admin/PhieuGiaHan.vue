@@ -4,10 +4,7 @@
     <Header :silderProps="'Phiếu gia hạn'"></Header>
 
     <h3 class="text-center mt-5 mb-3">Danh sách phiếu gia hạn</h3>
-    <router-link :to="{ name: '' }">
-      <button class="btn btn-primary">+</button>
-    </router-link>
-    <table class="table mt-2">
+    <table class="table table-hover mt-2">
       <thead>
         <tr>
           <th style="width: 140px">Mã phiếu</th>

@@ -4,7 +4,7 @@
   <router-link :to="{ name: '' }" >
     <button class="btn btn-primary">+</button>
   </router-link>
-  <table class="table mt-2">
+  <table class="table table-hover mt-2">
     <thead>
       <tr>
         <th style="width:140px">Mã hợp đồng</th>

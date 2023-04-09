@@ -4,13 +4,13 @@
     <Header :silderProps="'Khách hàng'"></Header>
 
     <h3 class="text-center mt-5 mb-3">Danh sách khách hàng</h3>
-    <router-link :to="{ name: '' }" >
+    <router-link :to="{ name: 'khachhang.them' }" >
         <button class="btn btn-primary">+</button>
-      </router-link>
-    <table class="table mt-2">
+    </router-link>
+    <table class="table table-hover mt-2">
       <thead>
         <tr>
-          <th style="width: 140px">Họ tên</th>
+          <th >Họ tên</th>
           <th scope="col">CCCD</th>
           <th scope="col">Nghề nghiệp</th>
           <th scope="col">Quê quán</th>
@@ -19,20 +19,38 @@
       </thead>
       <tbody>
         <tr :key="index" v-for="(kh, index) in khachhang">
-          <td style="width: 140px" class="text-center">{{ kh.hoten }}</td>
+          <td >{{ kh.hoten }}</td>
           <td class="text-left">{{ kh.cccd }}</td>
           <td>{{ kh.quequan }}</td>
           <td>{{ kh.nghenghiep }}</td>
 
           <td>
             <!-- <fa :icon="['fab','trash']"></fa> -->
-            <router-link :to="{ name: '' }" class="mr-2">
+            <!-- <router-link
+              :to="{
+                name: 'loaiphong.chitiet',
+                params: { maloai: lp.maloai },
+              }"
+            > -->
               <fa icon="info" class="style info"></fa>
-            </router-link>
-            <router-link :to="{ name: '' }" class="mr-2">
+            <!-- </router-link> -->
+            &nbsp;
+            <router-link
+              :to="{
+                name: 'khachhang.chinhsua',
+                params: { sotk: kh.STT },
+              }"
+            >
               <fa icon="edit"></fa>
             </router-link>
-            <fa icon="trash" class="mr-2 style trash"></fa>
+            &nbsp;
+            <!-- <router-link :to="{ name: '' }"> -->
+            <fa
+              icon="trash"
+              class="mr-2 style trash"
+              v-on:click="onDelete(lp.maloai)"
+            ></fa>
+            <!-- </router-link> -->
           </td>
         </tr>
       </tbody>
@@ -49,17 +67,17 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
-      khachhang: { type: Array },
+      khachhang: [],
     };
   },
   created() {
-    this.layDSKH();
+    this.getAll();
   },
   methods: {
-    async layDSKH() {
+    async getAll() {
       this.khachhang = await khachhangService.layDSKH();
-      
     },
+   
   },
 };
 </script>

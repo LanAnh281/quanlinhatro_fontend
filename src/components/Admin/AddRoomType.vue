@@ -142,6 +142,7 @@ export default {
     },
     async getRoomType(lpID) {
       this.roomtype = await loaiphongService.layLP(lpID);
+      console.log(this.roomtype);
       
     },
   },

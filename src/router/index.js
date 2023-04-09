@@ -14,12 +14,27 @@ const routes=[
         component:admin,
         
     },
+    //khách hàng
     {
         path:"/khachhang",
         name:"khachhang",
         component:()=>import('../components/Admin/KhachHang.vue'),
         
     },
+    {
+        path:"/khachhang/them",
+        name:"khachhang.them",
+        component:()=>import('../components/Admin/AddKhachHang.vue'),
+        
+    },
+    {
+        path:"/khachhang/chinhsua/:sotk",
+        name:"khachhang.chinhsua",
+        component:()=>import('../components/Admin/AddKhachHang.vue'),
+        
+    },
+
+    //nha trọ
     {
         path:"/nhatro",
         name:"nhatro",
