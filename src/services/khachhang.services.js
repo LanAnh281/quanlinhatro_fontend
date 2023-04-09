@@ -16,6 +16,9 @@ class khachhangService{
     async chinhsuaKH(sotk,data){
         return (await this.api.put(`${sotk}`,data)).data;
     }
+    async xoaKH(sotk){
+        return (await this.api.delete(`/${sotk}`)).data;
+    }
     
 }
 export default new khachhangService();

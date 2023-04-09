@@ -19,6 +19,10 @@
         <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>        
 
       </li>
+      <li>
+        <router-link :to="{ name: '' }"> Thống kê</router-link>        
+
+      </li>
     </ul>
   </div>
 </template>

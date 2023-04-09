@@ -4,13 +4,13 @@
     <Header :silderProps="'Khách hàng'"></Header>
 
     <h3 class="text-center mt-5 mb-3">Danh sách khách hàng</h3>
-    <router-link :to="{ name: 'khachhang.them' }" >
-        <button class="btn btn-primary">+</button>
+    <router-link :to="{ name: 'khachhang.them' }">
+      <button class="btn btn-primary">+</button>
     </router-link>
     <table class="table table-hover mt-2">
       <thead>
         <tr>
-          <th >Họ tên</th>
+          <th>Họ tên</th>
           <th scope="col">CCCD</th>
           <th scope="col">Nghề nghiệp</th>
           <th scope="col">Quê quán</th>
@@ -19,37 +19,21 @@
       </thead>
       <tbody>
         <tr :key="index" v-for="(kh, index) in khachhang">
-          <td >{{ kh.hoten }}</td>
+          <td>{{ kh.hoten }}</td>
           <td class="text-left">{{ kh.cccd }}</td>
           <td>{{ kh.quequan }}</td>
           <td>{{ kh.nghenghiep }}</td>
 
           <td>
-            <!-- <fa :icon="['fab','trash']"></fa> -->
-            <!-- <router-link
-              :to="{
-                name: 'loaiphong.chitiet',
-                params: { maloai: lp.maloai },
-              }"
-            > -->
-              <fa icon="info" class="style info"></fa>
-            <!-- </router-link> -->
-            &nbsp;
-            <router-link
-              :to="{
-                name: 'khachhang.chinhsua',
-                params: { sotk: kh.STT },
-              }"
-            >
+            <router-link :to="{
+              name: 'khachhang.chinhsua',
+              params: { sotk: kh.STT },
+            }">
               <fa icon="edit"></fa>
             </router-link>
             &nbsp;
             <!-- <router-link :to="{ name: '' }"> -->
-            <fa
-              icon="trash"
-              class="mr-2 style trash"
-              v-on:click="onDelete(lp.maloai)"
-            ></fa>
+            <fa icon="trash" class="mr-2 style trash" v-on:click="onDelete(kh.STT)"></fa>
             <!-- </router-link> -->
           </td>
         </tr>
@@ -67,6 +51,7 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
+      thongbao: { type: Object },
       khachhang: [],
     };
   },
@@ -77,7 +62,23 @@ export default {
     async getAll() {
       this.khachhang = await khachhangService.layDSKH();
     },
-   
+    async onDelete(sotk) {
+      this.$swal
+        .fire({
+          title: "Bạn có muốn xóa ?",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "OK",
+        })
+        .then(async (result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.thongbao = await khachhangService.xoaKH(sotk);
+            this.$swal.fire("Đã xóa!", "", "success");
+            this.getAll();
+          }
+        });
+    },
   },
 };
 </script>

@@ -3,7 +3,7 @@
   <div class="col-10 px-2">
     <Header :silderProps="'Phiếu gia hạn'"></Header>
 
-    <h3 class="text-center mt-5 mb-3">Danh sách phiếu gia hạn</h3>
+    <h3 class="text-center my-5">Danh sách phiếu gia hạn</h3>
     <table class="table table-hover mt-2">
       <thead>
         <tr>
@@ -12,7 +12,7 @@
           <th scope="col">Ngày bắt đầu</th>
           <th scope="col">Ngày kết thúc</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col">Xử lý</th>
+          <th scope="col" class="text-center">Xử lý</th>
         </tr>
       </thead>
       <tbody>
