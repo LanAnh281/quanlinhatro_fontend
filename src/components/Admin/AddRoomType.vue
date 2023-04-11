@@ -4,7 +4,7 @@
       <Header></Header>
      
     <form v-on:submit.prevent="save">
-      <h3>Thông tin loại phòng</h3>
+      <h3 class="text-center my-5">Thông tin loại phòng</h3>
       <div class="form-group">
         <label for="tenloai">Tên loại</label>
         <input

@@ -1,7 +1,7 @@
 <template>
  
   <h3 class="text-center mt-5 mb-3">Danh sách hợp đồng</h3>
-  <router-link :to="{ name: '' }" >
+  <router-link :to="{ name: 'hopdong.them' }" >
     <button class="btn btn-primary">+</button>
   </router-link>
   <table class="table table-hover mt-2">

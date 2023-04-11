@@ -2,7 +2,7 @@
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Khách hàng'"></Header>
-    <h3>{{ tacvu.ten }}</h3>
+    <h3 class="text-center my-5">{{ tacvu.ten }}</h3>
     <form @submit.prevent="save">
       <div class="form-group row">
         <label for="hoten" class="col-sm-2 col-form-label">Họ tên</label>

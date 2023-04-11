@@ -11,15 +11,19 @@ const routes=[
     {
         path:"/admin",
         name:"admin",
-        component:admin,
-        
+        component:admin,  
+    },
+    //them họp đồng
+    {
+        path:"/hopdong/them",
+        name:"hopdong.them",
+        component:()=>import('../components/Admin/AddHopDong.vue'),  
     },
     //khách hàng
     {
         path:"/khachhang",
         name:"khachhang",
         component:()=>import('../components/Admin/KhachHang.vue'),
-        
     },
     {
         path:"/khachhang/them",
@@ -41,6 +45,7 @@ const routes=[
         component:()=>import('../components/Admin/NhaTro.vue'),
         
     },
+    //phiếu gia hạn
     {
         path:"/phieugiahan",
         name:"phieugiahan",
