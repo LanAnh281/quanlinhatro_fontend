@@ -1,5 +1,15 @@
 <template>
-  <div>
+
+  <div  style=" 
+  
+  height:100vh;
+  top: 0px;
+  background-image: linear-gradient(
+    to right,
+    rgb(243, 167, 180),
+    rgb(133, 43, 235),
+    rgb(182, 32, 182)
+  ) !important; ">
     <ul>
       <li class="header">Admin</li>
       <li>

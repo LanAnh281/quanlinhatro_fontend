@@ -2,9 +2,25 @@
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Thêm hợp đồng'"></Header>
-
     <h3 class="text-center my-5">Thêm hợp đồng</h3>
-    <form>
+    <form @submit.prevent="save">
+      <div class="form-group row">
+        <div class="col-sm-2 pr-0">
+          <label for="matk"  class="col-form-label" style="width: 120px"
+            >Mã tài khoản</label
+          >
+          <span>:</span>
+        </div>
+        <div class="col-sm-10">
+          <input type="text" 
+          v-model="hopdong.matk" 
+          @blur="validate" 
+          class="form-control"
+          :class="{ 'is-invalid': errors.matk }"
+          id="matk" />
+          <div :class="{'invalid-feedback':errors.matk}">{{errors.matk}}</div>
+        </div>
+      </div>
       <div class="form-group row">
         <div class="col-sm-2 pr-0">
           <label for="hoten" class="col-form-label" style="width: 120px"
@@ -13,7 +29,14 @@
           <span>:</span>
         </div>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="hoten" />
+          <input type="text" 
+          class="form-control" 
+          v-model="hopdong.hoten" 
+          @blur="validate" 
+          :class="{ 'is-invalid': errors.hoten }"
+          id="hoten" />
+          <div :class="{'invalid-feedback':errors.hoten}">{{errors.hoten}}</div>
+
         </div>
       </div>
       <div class="form-group row">
@@ -24,8 +47,11 @@
           <span>:</span>
         </div>
         <div class="col-sm-10">
-          <select id="tenloai" class="form-control">
-            <option></option>
+          <select id="tenloai" class="form-control" @change="tenloai" >
+            <option v-for="(lp,index) in loaiphong" :key="index"  
+            :value="lp.maloai">
+              {{ lp.tenloai }}
+            </option>
           </select>
         </div>
       </div>
@@ -37,9 +63,13 @@
           <span>:</span>
         </div>
         <div class="col-sm-10">
-          <select id="tenphong" class="form-control">
-            <option></option>
+          <select id="tenphong" class="form-control" @change="tenphong">
+            <option v-for="(p,index) in phong" :key="index" 
+            :value="p.maphong"   
+            >{{p.tenphong}}
+          </option>
           </select>
+          <div :class="{'invalid-feedback':errors.maphong}">{{errors.maphong}}</div>
         </div>
       </div>
       <div class="form-group row">
@@ -51,7 +81,13 @@
         </div>
 
         <div class="col-sm-10">
-          <input type="date" class="form-control" id="ngaybd" />
+          <input type="date" class="form-control" 
+          id="ngaybd" 
+          v-model="hopdong.ngaybd"
+          @blur="validate"
+          :class="{ 'is-invalid': errors.ngaybd}"
+          />
+          <div :class="{'invalid-feedback':errors.ngaybd}">{{errors.ngaybd}}</div>
         </div>
       </div>
       <div class="form-group row">
@@ -62,12 +98,23 @@
           <span>:</span>
         </div>
         <div class="col-sm-10">
-          <input type="date" class="form-control" id="ngaykt" />
+          <input type="date"
+          class="form-control"
+          id="ngaykt" 
+          v-model="hopdong.ngaykt"
+          @blur="validate"
+          :class="{ 'is-invalid': errors.ngaykt}" />
+          <div :class="{'invalid-feedback':errors.ngaykt}">{{errors.ngaykt}}</div>
+
         </div>
       </div>
       <div class="my-2">
         <label for="tenloai" class="col-sm-2 col-form-label"></label>
-        <button class="btn btn-primary col-1" style="height: 40px">Thêm</button>
+        <button class="btn btn-primary col-1" 
+        style="height: 40px"
+        
+
+        >Thêm</button>
       </div>
     </form>
   </div>
@@ -76,14 +123,134 @@
 import Header from "./Header.vue";
 import Sidebar from "./sidebar.vue";
 
-// import hopdongService from "@/services/hopdong.services";
+import hopdongService from "../../services/hopdong.service";
+import phongService from "../../services/phong.service";
+import loaiphongService from "../../services/loaiphong.service";
+import taikhoanService from "../../services/taikhoan.service";
+
 
 export default {
   name: "ThemHopDong",
   components: { Header, Sidebar },
 
   data() {
-    return {};
+    return {
+      loaiphong:[],
+      phong:[],
+      hopdong:{
+        ngaybd:"",
+        ngaykt:"",
+        matk:"",
+        maphong:''
+      },
+      errors:{
+        ngaybd:'',
+        ngaykt:'',
+        matk:'',
+        maphong:'',
+        maloai:'',
+      }
+  };
   },
+  created(){
+    this.layLP();
+    var today= new Date();
+    var date = today.getFullYear()+'-'+('0' + (today.getMonth()+1)).slice(-2)+'-'+today.getDate();
+    this.hopdong.ngaybd=date;
+  },
+  methods:{
+    async layLP(){
+      this.loaiphong = await loaiphongService.layDSLP(); 
+    },
+    async validate(){
+      let isvalid=true;
+      this.errors={
+        ngaybd:'',
+        ngaykt:'',
+        matk:'',
+        maphong:'',
+        maloai:'',
+        hoten:'',
+      }
+      if(!this.hopdong.matk){
+       this.errors.matk='Mã tài khoản không được bỏ trống';
+       isvalid=false;
+      }
+      else if(this.hopdong.matk) {
+        let tk=await taikhoanService.layTK(this.hopdong.matk);
+        // console.log(tk.length);
+        if(tk.length==0)
+        this.errors.matk='Mã tài khoản không tồn tại';
+        isvalid=false;
+      }
+      if(!this.hopdong.hoten){
+        this.errors.hoten='Họ tên không được bỏ trống';
+        isvalid=false;
+      }
+      if(!this.hopdong.maloai){
+        this.errors.maloai='Tên loại không được bỏ trống';
+        isvalid=false;
+      }
+      if(!this.hopdong.tenphong){
+        this.errors.tenphong='Tên phòng không được bỏ trống';
+        isvalid=false;
+      }
+      if(!this.hopdong.ngaybd){
+        this.errors.ngaybd='Ngày bắt đầu không được bỏ trống';
+        isvalid=false;
+      }
+      else if(this.hopdong.ngaybd){
+        var today= new Date();
+        var date = today.getFullYear()+'-'+('0' + (today.getMonth()+1)).slice(-2)+'-'+today.getDate();
+        if(date>this.hopdong.ngaybd){
+          this.errors.ngaybd='Ngày bắt đầu thuê bạn chọn là ngày quá khứ';
+        }
+        isvalid=false;
+      }
+      if(!this.hopdong.ngaykt){
+        this.errors.ngaykt='Ngày kết thúc không được bỏ trống';
+        isvalid=false;
+      }
+      else if(this.hopdong.ngaykt){
+        if(this.hopdong.ngaykt<this.hopdong.ngaybd){
+          this.errors.ngaykt='Ngày kết thúc thuê nhỏ hơn ngày bắt đầu thuê';
+        }
+        isvalid=false;
+      }
+      return isvalid;
+    },
+
+    async tenloai(loai){
+      // console.log(loai.target.value);
+      this.phong = await phongService.LayTTPTheoLoai(loai.target.value);
+      this.phong=this.phong.filter((p,index) =>{
+        return p.trangthai=='0';
+      })
+    },
+    async tenphong(phong){
+      // console.log('mã phòng:',phong.target.value);
+      this.hopdong.maphong=phong.target.value;
+    },
+    async save(){
+ 
+      if(this.validate){
+       let mes= await hopdongService.themHD(this.hopdong);
+       if(mes.message=='thêm hợp đồng'){
+        this.$swal.fire({
+          title: "Tạo thành công hợp đồng",
+          confirmButtonText: "OK",
+        });
+       }
+        
+      }
+    }
+    
+  }
 };
 </script>
+<style>
+an{
+  display: none;
+  background-color: red;
+}
+</style>

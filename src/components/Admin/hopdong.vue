@@ -25,13 +25,13 @@
 
         <td>
           <!-- <fa :icon="['fab','trash']"></fa> -->
-          <router-link :to="{ name: '' }" class="mr-2">
+          <!-- <router-link :to="{ name: '' }" class="mr-2">
             <fa icon="info" class="style info"></fa>
-          </router-link>
+          </router-link> -->
           <router-link :to="{ name: '' }" class="mr-2">
             <fa icon="edit"></fa>
           </router-link>
-          <fa icon="trash" class="mr-2 style trash"></fa>
+          <fa icon="trash" @click="onDelete(hd.mahd)" class="mr-2 style trash"></fa>
         </td>
       </tr>
     </tbody>
@@ -54,8 +54,25 @@ export default {
   methods: {
     async layDSHD() {
       this.hopdong = await hopdongService.layDSHD();
-   
     },
+    async onDelete(mahd){
+      this.$swal
+        .fire({
+          title: `Bạn có muốn xóa hợp đồng ${mahd}`,
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "OK",
+        })
+        .then( async(result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            let mes= await hopdongService.xoaHD(mahd);
+            this.$swal.fire("Đã xóa!", "", "success");
+            this.layDSHD();
+          }
+        });
+
+    }
   },
 };
 </script>

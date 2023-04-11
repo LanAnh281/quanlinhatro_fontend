@@ -4,6 +4,11 @@ const routes=[
     //login
     {
         path:"/",
+        name:"dangnhap",
+        component: ()=>import('../components/dangnhap.vue'),
+    },
+    {
+        path:"/login",
         name:"login",
         component: ()=>import('../components/login.vue'),
     },
@@ -68,6 +73,11 @@ const routes=[
         path:"/loaiphong/chitiet/:maloai",
         name:"loaiphong.chitiet",
         component:()=>import('../components/Admin/RoomTypeDetail.vue'),
+    },
+    {
+        path:"/phong/them/:maloai",
+        name:"phong.them",
+        component:()=>import('../components/Admin/AddPhong.vue'),
     },
     {
         path:"/loaiphong/them",
