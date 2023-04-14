@@ -3,7 +3,7 @@
     <div class="col-10 px-2">
       <Header></Header>
      
-    <form v-on:submit.prevent="save">
+    <form v-on:submit.prevent="save" class="pl-5">
       <h3 class="text-center my-5">Thông tin loại phòng</h3>
       <div class="form-group">
         <label for="tenloai">Tên loại</label>

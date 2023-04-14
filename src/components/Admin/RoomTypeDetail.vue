@@ -2,7 +2,7 @@
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Chi tiết loại phòng'"></Header>
-    <h3 class="text-center my-5">Chi tiết loại phòng</h3>
+    <h3 class="text-center  mt-3 mb-3">Chi tiết loại phòng</h3>
     <div>
       <p><span>Tên loại:</span> {{ loaiphong.tenloai }}</p>
       <p><span>Diện tích:</span> {{ loaiphong.dientich }} m<sup>2</sup></p>

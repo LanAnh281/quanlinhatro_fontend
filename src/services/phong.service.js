@@ -7,9 +7,11 @@ class loaiphongService{
     async LayTTP(){
         return (await this.api.get("/")).data;
     }
-
+    async layPhong(maphong){
+        return (await this.api.get(`${maphong}`)).data;
+    }
     async LayTTPTheoLoai(maloai){
-        return (await this.api.get(`${maloai}`)).data;
+        return (await this.api.get(`/dsphong/${maloai}`)).data;
     }
     async chinhsuaPhong(maphong,data){
         return (await this.api.put(`/${maphong}`,data)).data;

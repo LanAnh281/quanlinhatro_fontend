@@ -3,7 +3,7 @@
   <div class="col-10 px-2">
     <Header :silderProps="'Khách hàng'"></Header>
     <h3 class="text-center my-5">{{ tacvu.ten }}</h3>
-    <form @submit.prevent="save">
+    <form @submit.prevent="save" class="pl-5">
       <div class="form-group row">
         <label for="hoten" class="col-sm-2 col-form-label">Họ tên</label>
         <div class="col-sm-10">

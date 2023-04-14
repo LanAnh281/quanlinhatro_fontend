@@ -2,9 +2,7 @@
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Loại phòng'"></Header>
-
-   
-    <h3 class="text-center mt-5 mb-3">Danh sách loại phòng</h3>
+    <h3 class="text-center mt-3 mb-3">Danh sách loại phòng</h3>
     <router-link :to="{ name: 'loaiphong.them' }" >
       <button class="btn btn-primary">+</button>
     </router-link>

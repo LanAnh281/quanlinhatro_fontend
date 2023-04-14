@@ -3,7 +3,7 @@
   <div class="col-10 px-2">
     <Header :silderProps="'Phiếu gia hạn'"></Header>
 
-    <h3 class="text-center my-5">Danh sách phiếu gia hạn</h3>
+    <h3 class="text-center  mt-3 mb-3">Danh sách phiếu gia hạn</h3>
     <table class="table table-hover mt-2">
       <thead>
         <tr>

@@ -1,6 +1,6 @@
 <template>
  
-  <h3 class="text-center mt-5 mb-3">Danh sách hợp đồng</h3>
+  <h3 class="text-center  my-2">Danh sách hợp đồng</h3>
   <router-link :to="{ name: 'hopdong.them' }" >
     <button class="btn btn-primary">+</button>
   </router-link>
@@ -28,9 +28,15 @@
           <!-- <router-link :to="{ name: '' }" class="mr-2">
             <fa icon="info" class="style info"></fa>
           </router-link> -->
-          <router-link :to="{ name: '' }" class="mr-2">
-            <fa icon="edit"></fa>
-          </router-link>
+
+          <router-link
+              :to="{
+                name: 'hopdong.chinhsua',
+                params: { mahd: `${hd.mahd}` },
+              }"
+            >
+              <fa icon="edit"></fa>
+            </router-link> &nbsp;
           <fa icon="trash" @click="onDelete(hd.mahd)" class="mr-2 style trash"></fa>
         </td>
       </tr>

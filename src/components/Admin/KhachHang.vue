@@ -21,9 +21,8 @@
         <tr :key="index" v-for="(kh, index) in khachhang">
           <td>{{ kh.hoten }}</td>
           <td class="text-left">{{ kh.cccd }}</td>
-          <td>{{ kh.quequan }}</td>
           <td>{{ kh.nghenghiep }}</td>
-
+          <td>{{ kh.quequan }}</td>
           <td>
             <router-link :to="{
               name: 'khachhang.chinhsua',

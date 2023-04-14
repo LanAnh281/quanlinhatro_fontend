@@ -24,6 +24,12 @@ const routes=[
         name:"hopdong.them",
         component:()=>import('../components/Admin/AddHopDong.vue'),  
     },
+    //chinh sua hop dong
+    {
+        path:"/hopdong/chinhsua/:mahd",
+        name:"hopdong.chinhsua",
+        component:()=>import('../components/Admin/AddHopDong.vue'),  
+    },
     //khách hàng
     {
         path:"/khachhang",

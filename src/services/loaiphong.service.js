@@ -8,7 +8,7 @@ class loaiphongService{
         return (await this.api.get("/")).data;
     };
     async layLP(maloai){
-        return (await this.api.get(`${maloai}`)).data;
+        return (await this.api.get(`/${maloai}`)).data;
     };
     async themLP(data){
         return (await this.api.post("/",data)).data;
