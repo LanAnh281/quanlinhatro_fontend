@@ -24,7 +24,9 @@
       <li>
         <router-link :to="{ name: 'loaiphong' }"> Loại phòng</router-link>        
       </li>
-      <li>Hóa đơn</li>
+      <li>
+        <router-link :to="{ name: 'hoadon' }"> Hóa đơn</router-link>        
+      </li>
       <li>
         <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>        
 

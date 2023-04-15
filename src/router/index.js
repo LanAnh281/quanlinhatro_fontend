@@ -57,7 +57,16 @@ const routes=[
         name:"phieugiahan",
         component:()=>import('../components/Admin/PhieuGiaHan.vue'),
     },
-    
+    {
+        path:"/hoadon",
+        name:"hoadon",
+        component:()=>import('../components/Admin/HoaDon.vue'),
+    },
+    {
+        path:"/hoadon/them",
+        name:"hoadon.them",
+        component:()=>import('../components/Admin/AddHoaDon.vue'),
+    },
     //user
     {
         path:"/user",
