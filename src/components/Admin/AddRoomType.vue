@@ -1,10 +1,9 @@
 <template>
   <Sidebar class="col-2 px-0"></Sidebar>
     <div class="col-10 px-2">
-      <Header></Header>
-     
+      <Header :silderProps="tacvu.name"></Header>
     <form v-on:submit.prevent="save" class="pl-5">
-      <h3 class="text-center my-5">Thông tin loại phòng</h3>
+      <h3 class="text-center my-5">{{tacvu.name}}</h3>
       <div class="form-group">
         <label for="tenloai">Tên loại</label>
         <input
@@ -57,7 +56,7 @@
         </div>
       </div>
 
-      <button class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary">{{tacvu.submit}}</button>
     </form>
   </div>
 </template>
@@ -82,14 +81,24 @@ export default {
         giaphong: "",
         dientich: "",
       },
+      tacvu:{
+        name:'',
+        submit:''
+      }
     };
   },
   created() {
     let lpID = this.$route.params.maloai;
     
-    if (lpID) {
+    if (this.$route.params.maloai) {
       this.getRoomType(lpID);
+      
+      this.tacvu.name='Cập nhật loại phòng';
+      this.tacvu.submit='Cập nhật';
+     return;
     }
+    this.tacvu={name:'Thêm loại phòng', submit:'Thêm'};
+
   },
   methods: {
     validate() {
@@ -123,7 +132,6 @@ export default {
       if (this.validate()) {
         console.log(this.roomtype);
         if (this.$route.params.maloai) {
-          console.log('router',this.$route.params.maloai);
           await loaiphongService
             .capNhatLP(this.$route.params.maloai, this.roomtype)
             .then((res) => {
@@ -132,7 +140,6 @@ export default {
             });
             return;
         } else {
-          console.log('add');
           await loaiphongService.themLP(this.roomtype).then((res) => {
             this.$router.push({ name: "admin" });
             return;
@@ -142,7 +149,6 @@ export default {
     },
     async getRoomType(lpID) {
       this.roomtype = await loaiphongService.layLP(lpID);
-      console.log(this.roomtype);
       
     },
   },

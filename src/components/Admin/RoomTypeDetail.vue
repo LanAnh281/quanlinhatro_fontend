@@ -65,12 +65,7 @@ export default {
             title: "Loại phòng này chưa có phòng ",
             confirmButtonText: "OK",
           })
-          .then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              this.$router.push({ name: "admin" });
-            }
-          });
+          
       }
     },
     async toggle(maphong,tt,maloai) {

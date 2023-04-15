@@ -1,7 +1,7 @@
 <template>
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
-    <Header :silderProps="'Thêm hợp đồng'"></Header>
+    <Header :silderProps="tacvu.ten"></Header>
     <h3 class="text-center my-5">
       {{ tacvu.ten }}
     </h3>
@@ -219,7 +219,6 @@ export default {
         let lp= await loaiphongService.layLP(p[0].maloai);
         this.hopdong['maloai']=lp.maloai;
         this.hopdong.tenloai=lp.tenloai;
-        // console.log(this.hopdong.tenloai);
         this.hopdong.tenphong=p[0].tenphong; 
         let khach= await khachhangService.layKH(this.hopdong.stt_tk);
        

@@ -16,6 +16,9 @@ class loaiphongService{
     async chinhsuaPhong(maphong,data){
         return (await this.api.put(`/${maphong}`,data)).data;
     }
+    async themPhong (maloai,data){
+        return (await this.api.post(`/${maloai}`,data));
+    }
 }
 
 export default new loaiphongService();
