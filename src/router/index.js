@@ -1,14 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
 const routes=[
-    //login
+    
     {
         path:"/",
-        name:"dangnhap",
-        component: ()=>import('../components/dangnhap.vue'),
-    },
-    {
-        path:"/login",
         name:"login",
         component: ()=>import('../components/login.vue'),
     },

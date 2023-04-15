@@ -19,6 +19,9 @@ class loaiphongService{
     async themPhong (maloai,data){
         return (await this.api.post(`/${maloai}`,data));
     }
+    async xoaPhong (maphong){
+        return (await this.api.delete(`/${maphong}`));
+    }
 }
 
 export default new loaiphongService();

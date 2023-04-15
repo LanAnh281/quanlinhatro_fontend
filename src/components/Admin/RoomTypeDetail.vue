@@ -3,27 +3,35 @@
   <div class="col-10 px-2">
     <Header :silderProps="'Chi tiết loại phòng'"></Header>
     <h3 class="text-center  mt-3 mb-3">Chi tiết loại phòng</h3>
-    <div>
+    <div  class='mx-5'>
       <p><span>Tên loại:</span> {{ loaiphong.tenloai }}</p>
       <p><span>Diện tích:</span> {{ loaiphong.dientich }} m<sup>2</sup></p>
       <p><span>Giá phòng:</span> {{ loaiphong.giaphong }} ngàn đồng</p>
+      <router-link :to="{ name: 'phong.them' }" >
+        <button class="btn btn-primary">+</button>
+      </router-link>
     </div>
-    <router-link :to="{ name: 'phong.them' }" >
-      <button class="btn btn-primary">+</button>
-    </router-link>
+  
 
-    <table class="table table-hover mt-2">
+    <table class="table table-hover mt-2 mx-5">
       <thead>
         <tr>
           <th scope="col">Tên phòng</th>
           <th scope="col">Trạng thái</th>
+          <th scope="col" class="text-center">Thao tác</th>
         </tr>
       </thead>
       <tbody>
         <tr :key="index" v-for="(p, index) in phong">
           <td>{{ p.tenphong }}</td>
           <td>{{ p.trangthai }}</td>
-          
+          <td class="text-center">
+            <fa
+              icon="trash"
+              class="mr-2 style trash "
+              v-on:click="onDelete(p.maphong)"
+            ></fa>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -88,6 +96,24 @@ export default {
 
         }
     },
+    async onDelete(maphong){
+      console.log('xóa');
+      this.$swal
+        .fire({
+          title: "Bạn có muốn xóa ?",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "OK",
+        })
+        .then(async (result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.thongbao = await phongService.xoaPhong(maphong);
+            this.$swal.fire("Đã xóa!", "", "success");
+            this.layDSP( this.$route.params.maloai);
+          }
+        });
+    }
   },
 };
 </script>
