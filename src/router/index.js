@@ -13,6 +13,12 @@ const routes=[
         name:"admin",
         component:admin,  
     },
+    //doi mat khau
+    {
+        path:"/doimatkhau",
+        name:"doimatkhau",
+        component:()=>import('../components/Admin/DoiMatKhau.vue'),  
+    },
     //them họp đồng
     {
         path:"/hopdong/them",
@@ -41,6 +47,13 @@ const routes=[
         path:"/khachhang/chinhsua/:sotk",
         name:"khachhang.chinhsua",
         component:()=>import('../components/Admin/AddKhachHang.vue'),
+        
+    },
+    //hóa đơn
+    {
+        path:"/hoadon/:mahd",
+        name:"hoadon.chitiet",
+        component:()=>import('../components/Admin/PhieuThu.vue'),
         
     },
 

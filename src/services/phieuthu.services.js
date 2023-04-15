@@ -4,8 +4,8 @@ class phieuthuService{
     constructor(baseUrl="/api/phieuthu"){
         this.api=createApiClient(baseUrl);
     }
-    async layDSPT(){
-        return (await this.api.get("/")).data;
+    async layPT(mahd){
+        return (await this.api.get(`/${mahd}`)).data;
     };
    
    

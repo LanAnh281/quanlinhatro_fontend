@@ -28,6 +28,15 @@
           <td>{{ hd.trangthai }}</td>
           <td>
             <router-link
+            :to="{
+              name: 'hoadon.chitiet',
+              params: { mahd: `${hd.mahd}` },
+            }"
+          >
+            <fa icon="info" class="style info"></fa>
+          </router-link>
+          &nbsp;
+            <router-link
               :to="{
                 name: '',
                 params: {},

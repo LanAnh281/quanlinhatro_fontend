@@ -19,7 +19,7 @@
               <li>
                 <router-link :to="{ name: 'nhatro' }">Nhà Trọ</router-link>
               </li>
-              <li>Đổi mật khẩu</li>
+              <li> <router-link :to="{ name: 'doimatkhau' }">Đổi mật khẩu</router-link></li>
               <li @click="logout">Đăng xuất</li>
             </ul>
           </li>
