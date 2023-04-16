@@ -62,16 +62,17 @@
         </div>
       </div>
     </form>
-    <footer class="row m-0 justify-content-center">
-      <div class="col-8 my-4">
+    <footer class="row m-0 justify-content-around">
+      <div class="col-8 mx-2 my-4">
         <h6><fa icon="home"></fa> &nbsp;
           Nhà trọ: {{nhatro.tennhatro}}</h6>
         <h6> <fa icon="phone"></fa> &nbsp; SĐT: {{nhatro.sdt}} ({{ nhatro.hoten }})</h6>
         <h6> <fa icon="map"></fa> &nbsp; Địa chỉ: {{nhatro.diachi}}</h6>
 
       </div>
-     <img src="../assets/img/logo.PNG" class="col-2 my-2" style="width: 70px;height:120px;object-fit:cotain">
-     
+      <div class="col-1 my-4" style="width:70px">
+        <img src="../assets/img/logo.PNG"  style="height:80px;object-fit:cotain">
+      </div>
     </footer>
   </div>
 </template>

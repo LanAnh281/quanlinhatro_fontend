@@ -7,7 +7,9 @@ class phieuthuService{
     async layPT(mahd){
         return (await this.api.get(`/${mahd}`)).data;
     };
-   
+    async layDSPT(){
+        return (await this.api.get(`/`)).data;
+    };
    
 }
 

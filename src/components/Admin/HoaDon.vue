@@ -83,7 +83,7 @@ export default {
     },
     async onDelete(mahd) {
         let PhieuThu=await phieuthuService.layDSPT();
-        let isPhieu= PhieuThu.every((phieu,index)=>{
+        let isPhieu=  PhieuThu.every((phieu,index)=>{
             return phieu.mahd!=mahd;
         })
     if(isPhieu){
@@ -97,7 +97,7 @@ export default {
         .then(async (result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-            let message = hoadonService.xoaHD(mahd);
+            let message = await hoadonService.xoaHD(mahd);
             console.log(message);
             this.$swal.fire("Đã xóa!", "", "success");
             this.layDSHD();
