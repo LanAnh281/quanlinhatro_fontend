@@ -11,6 +11,9 @@ class loaiphongService{
     async layTK(sotk){
         return (await this.api.get(`/${sotk}`)).data;
     }
+    async capnhatTK(data){
+        return (await this.api.put(`/`,data)).data;
+    }
    
 }
 

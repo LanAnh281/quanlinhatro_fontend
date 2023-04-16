@@ -39,7 +39,7 @@
             <div class="col-sm-5">
               <input
               type="password"
-              v-model="user.matkhaumoi"
+              v-model="user.mk"
               v-bind:class="{ 'is-invalid': errors.matkhaumoi }"
               @blur="validate()"
               name="matkhaumoi"
@@ -88,6 +88,7 @@
 </template>
 <script>
  import loginService from "../../services/login.services";
+ import taikhoanService from "../../services/taikhoan.service";
  import Header from "./Header.vue";
 import Sidebar from "./sidebar.vue";
 
@@ -112,7 +113,6 @@ export default {
   },
   
   methods: {
-    
     validate() {
       let valid = true;
       this.errors = {
@@ -120,6 +120,7 @@ export default {
         matkmoi: "",
         matkhau: "",
       };
+      
       if (!this.user.matkhaucu) {
         this.errors.matkhaucu = "Bạn cần nhập mật khẩu cũ";
         valid = false;
@@ -127,7 +128,7 @@ export default {
     //   else if(){
 
     //   }
-      if (!this.user.matkhaumoi) {
+      if (!this.user.mk) {
         this.errors.matkhaumoi = "Bạn cần nhập mật khẩu mới";
         valid = false;
       }
@@ -135,7 +136,7 @@ export default {
         this.errors.matkhau = "Bạn cần nhập lại mật khẩu";
         valid = false;
       }
-      if(this.user.matkhaumoi!=this.user.matkhau){
+      if(this.user.mk!=this.user.matkhau){
         this.errors.matkhau = "mật khẩu nhập lại không khớp";
         valid = false;
       }
@@ -144,7 +145,13 @@ export default {
    
       async checkLogin() {
       if (this.validate()) {
-       
+        let message= await taikhoanService.capnhatTK(this.user);
+        if(message){
+          this.$swal.fire({
+            title: "Thay đổi mật khẩu thành công",
+            confirmButtonText: "OK",
+          });
+        }
       }
     },
   

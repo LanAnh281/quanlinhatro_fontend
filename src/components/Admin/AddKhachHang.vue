@@ -230,8 +230,17 @@ export default {
 
         this.thongbao = await khachhangService.themKH(this.khachhang);
         this.$swal.fire({
-          title: "Thêm thành công",
-          confirmButtonText: "OK",
+         
+          title: "Bạn có muốn in tài khoản ?",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "In",
+        })
+        .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.$router.push({name:'khachhang.in',params:{STT:this.thongbao.STT}});
+          }
         });
       }
       else{

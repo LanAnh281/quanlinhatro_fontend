@@ -38,6 +38,11 @@ const routes=[
         component:()=>import('../components/Admin/KhachHang.vue'),
     },
     {
+        path:"/khachhang/in/:STT",
+        name:"khachhang.in",
+        component:()=>import('../components/Admin/Print.vue'),
+    },
+    {
         path:"/khachhang/them",
         name:"khachhang.them",
         component:()=>import('../components/Admin/AddKhachHang.vue'),
