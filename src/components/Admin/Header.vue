@@ -2,6 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div >
+        
         <router-link :to="{ name: 'admin' }">
           <fa icon="home"></fa>
         </router-link>

@@ -14,6 +14,6 @@ import { faGithub, faYoutube} from "@fortawesome/free-brands-svg-icons";
 import VueSweetalert2 from "vue-sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-library.add(fas,faYoutube,faGithub);
 
+library.add(fas,faYoutube,faGithub);
 createApp(App).use(router).component("fa", FontAwesomeIcon).use(VueSweetalert2).mount('#app')

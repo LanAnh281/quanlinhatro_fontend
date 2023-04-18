@@ -7,6 +7,11 @@ const routes=[
         name:"login",
         component: ()=>import('../components/login.vue'),
     },
+    {
+        path:"/thongke",
+        name:"thongke",
+        component: ()=>import('../components/Admin/thongke.vue'),
+    },
     //admin
     {
         path:"/admin",
@@ -61,6 +66,12 @@ const routes=[
         component:()=>import('../components/Admin/PhieuThu.vue'),
         
     },
+    {
+        path:"/phieuthu/:mahd",
+        name:"phieuthu.them",
+        component:()=>import('../components/Admin/AddPhieuThu.vue'),
+        
+    },
 
     //nha trọ
     {
@@ -83,6 +94,11 @@ const routes=[
     {
         path:"/hoadon/them",
         name:"hoadon.them",
+        component:()=>import('../components/Admin/AddHoaDon.vue'),
+    },
+    {
+        path:"/hoadon/chinhsua/:mahd",
+        name:"hoadon.chinhsua",
         component:()=>import('../components/Admin/AddHoaDon.vue'),
     },
     //user

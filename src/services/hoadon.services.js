@@ -7,8 +7,17 @@ class hoadonService{
     async layDSHD(){
         return (await this.api.get("/")).data;
     };
+    async layHD(mahd){
+        return (await this.api.get(`/${mahd}`)).data;
+    };
     async xoaHD(mahd){
         return (await this.api.delete(`/${mahd}`)).data;
+    };
+    async themHD(data){
+        return (await this.api.post(`/`,data)).data;
+    };
+    async chinhsuaHD(mahd,data){
+        return (await this.api.put(`/${mahd}`,data)).data;
     };
    
 }

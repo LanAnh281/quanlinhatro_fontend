@@ -10,6 +10,9 @@ class phieuthuService{
     async layDSPT(){
         return (await this.api.get(`/`)).data;
     };
+    async themPT(mahd){
+        return (await this.api.post(`/${mahd}`)).data;
+    };
    
 }
 

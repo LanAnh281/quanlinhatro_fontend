@@ -1,40 +1,45 @@
 <template>
-
-  <div  style=" 
-  
-  height:100vh;
-  top: 0px;
-  background-image: linear-gradient(
-    to right,
-    rgb(243, 167, 180),
-    rgb(133, 43, 235),
-    rgb(182, 32, 182)
-  ) !important; ">
+  <div
+    style="height: 100vh;
+      top: 0px;
+      background-image: linear-gradient(
+        to right,
+        rgb(243, 167, 180),
+        rgb(133, 43, 235),
+        rgb(182, 32, 182)
+      ) !important;
+    "
+      
+  >
     <ul>
       <li class="header">Admin</li>
       <li>
         <router-link :to="{ name: 'admin' }"> Hợp đồng</router-link>
       </li>
       <li>
-        <router-link :to="{name:'khachhang'}">
-           Khách hàng
-        </router-link>
-       
+        <router-link :to="{ name: 'khachhang' }"> Khách hàng </router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'loaiphong' }"> Loại phòng</router-link>        
+        <router-link :to="{ name: 'loaiphong' }"> Loại phòng</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'hoadon' }"> Hóa đơn</router-link>        
+        <router-link :to="{ name: 'hoadon' }"> Hóa đơn</router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>        
-
+        <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>
       </li>
-      <li>
-        <router-link :to="{ name: '' }"> Thống kê</router-link>        
-
-      </li>
+      <li style="position: relative;">
+        Thống kê
+          <ul class="p0 m0" style="position: absolute;">
+            <li >
+              <router-link :to="{ name: 'nhatro' }">Tiền trọ</router-link>
+            </li>
+            <li> 
+              <router-link :to="{ name: 'doimatkhau' }">Đổi mật khẩu</router-link>
+            </li>
+          </ul>
+        </li>        
+      
     </ul>
   </div>
 </template>
@@ -42,40 +47,37 @@
 import loaiphongService from "@/services/loaiphong.service";
 
 export default {
-  name:"Sidebar",
-  comments:{},
-  data(){
-      const layDSLP=async()=>{
-          try{
-            this.loaiphong=await loaiphongService.layDSLP();
-
-          }catch(error){
-            console.log(error);
-          }
-        }
-      return{
-        loaiphong: layDSLP(),
+  name: "Sidebar",
+  comments: {},
+  data() {
+    const layDSLP = async () => {
+      try {
+        this.loaiphong = await loaiphongService.layDSLP();
+      } catch (error) {
+        console.log(error);
       }
-      
-      
-    },
-}</script>
+    };
+    return {
+      loaiphong: layDSLP(),
+    };
+  },
+};
+</script>
 
 <style scoped>
-a{
-  color:#fff;
+a {
+  color: #fff;
   position: relative;
   display: block;
 }
-li:hover a{
-  color:#2f89fc;
+li:hover a {
+  color: #2f89fc;
   text-decoration: none;
-  
 }
 .header {
   padding: 17px 0;
   text-align: center;
-    font-weight: bold;
+  font-weight: bold;
 }
 ul {
   z-index: 1;
@@ -97,7 +99,6 @@ li {
   margin-top: 0px;
   color: #fff;
   display: block;
-  
 }
 
 li:hover {
@@ -107,15 +108,14 @@ li:hover {
   border-top-right-radius: 10px 10px;
   border-bottom-right-radius: 10px 10px;
   cursor: pointer;
-  
 }
 li ul {
   width: 100%;
   background: #1e2b32;
-  margin-left: 156px;
-  margin-top: -36px;
+  top:100%;
   display: none;
   position: absolute;
+  left: 0;
 }
 
 li:hover > ul {

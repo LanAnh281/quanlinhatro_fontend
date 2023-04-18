@@ -59,7 +59,7 @@
         </div>
         <div class="col-sm-10">
           <select id="tenloai" class="form-control" @change="tenloai">
-            <option :value="hopdong.maloai" :class="{an: hopdong.tenloai}" selected>{{hopdong.tenloai}}  </option>
+            <option :value="hopdong.maloai" selected>---{{hopdong.tenloai}}---  </option>
             <option
               v-for="(lp, index) in loaiphong"
               :key="index"
@@ -78,7 +78,7 @@
         </div>
         <div class="col-sm-10">
           <select id="tenphong" class="form-control" @change="tenphong">
-            <option :value="hopdong.maphong" :class="{an: hopdong.tenphong}" >{{hopdong.tenphong}} </option>
+            <option :value="hopdong.maphong"  > ---{{hopdong.tenphong}}--- </option>
             <option  v-for="(p, index) in phong" 
             :key="index" :value="p.maphong">
               {{ p.tenphong }}

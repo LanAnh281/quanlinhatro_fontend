@@ -2,7 +2,7 @@
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Hóa đơn'"></Header>
-    <h3 class="text-center mt-5 mb-3">Danh sách hóa đơn</h3>
+    <h3 class="text-center mt-5 mb-3">Danh sách hóa đơn </h3>
     <router-link :to="{ name: 'hoadon.them' }">
       <button class="btn btn-primary">+</button>
     </router-link>
@@ -14,8 +14,9 @@
           <th scope="col">Năm</th>
           <th scope="col">Phòng</th>
           <th scope="col">Tổng tiền</th>
-          <th scope="col">Trạng thái</th>
+          <!-- <th scope="col">Trạng thái</th> -->
           <th scope="col">Thao tác</th>
+          <th scope="col">Tạo phiếu thu</th>
         </tr>
       </thead>
       <tbody>
@@ -23,23 +24,16 @@
           <td>{{ hd.mahd }}</td>
           <td class="text-left">{{ hd.thang }}</td>
           <td>{{ hd.nam }}</td>
-          <td>{{ hd.phong }}</td>
+          <td >{{ hd.tenphong }} </td>
           <td>{{ hd.tongtien }}</td>
-          <td>{{ hd.trangthai }}</td>
+          <!-- <td>{{ hd.trangthai }}</td> -->
           <td>
-            <router-link
-            :to="{
-              name: 'hoadon.chitiet',
-              params: { mahd: `${hd.mahd}` },
-            }"
-          >
-            <fa icon="info" class="style info"></fa>
-          </router-link>
+           
           &nbsp;
             <router-link
               :to="{
-                name: '',
-                params: {},
+                name: 'hoadon.chinhsua',
+                params: {mahd:`${hd.mahd}`},
               }"
             >
               <fa icon="edit"></fa>
@@ -53,12 +47,21 @@
             ></fa>
             <!-- </router-link> -->
           </td>
+          <td class="text-center">
+            <router-link :to="{ name: 'phieuthu.them',params:{mahd:`${hd.mahd}`} }">
+              <fa
+              icon="plus"
+             
+            ></fa>
+            </router-link>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
 <script>
+import phongService from "../../services/phong.service";
 import Header from "./Header.vue";
 import Sidebar from "./sidebar.vue";
 
@@ -80,7 +83,18 @@ export default {
   methods: {
     async layDSHD() {
       this.hoadon = await hoadonService.layDSHD();
+      console.log(this.hoadon.length);
+     
+      this.hoadon= this.hoadon.filter(async (h,index)=>{
+        
+        let phong = await phongService.layPhong(h.maphong);
+        this.hoadon[index].tenphong=phong[0].tenphong;
+      
+      })
+      console.log(this.hoadon);
+      
     },
+   
     async onDelete(mahd) {
         let PhieuThu=await phieuthuService.layDSPT();
         let isPhieu=  PhieuThu.every((phieu,index)=>{
@@ -118,3 +132,20 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+.style {
+  padding: 1px;
+  width: 16px;
+  color: white;
+  border-radius: 15px;
+}
+
+.info {
+  background-color: rgb(93, 42, 245);
+}
+
+.trash {
+  color: red;
+}
+</style>
