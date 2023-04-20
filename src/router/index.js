@@ -1,7 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
 const routes=[
-    
+    // {
+    //     path:"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-5C1041736G469025V",
+    //     name:"paypal",
+    //     // component: ()=>import('../components/login.vue'),
+    // },
+    {
+        path:"/",
+        name:"login",
+        component: ()=>import('../components/login.vue'),
+    },
     {
         path:"/",
         name:"login",

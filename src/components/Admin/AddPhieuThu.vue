@@ -110,7 +110,7 @@ export default {
     await this.layTK();
     let tt= await phieuthuService.themPT(this.hoadon.mahd);
 
-    // window.print();
+    window.print();
   },
   methods: {
     async layTK() {

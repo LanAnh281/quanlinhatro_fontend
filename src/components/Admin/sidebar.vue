@@ -32,7 +32,7 @@
         Thống kê
           <ul class="p0 m0" style="position: absolute;">
             <li >
-              <router-link :to="{ name: 'nhatro' }">Tiền trọ</router-link>
+              <router-link :to="{ name: 'nhatro' }">Điện-Nước</router-link>
             </li>
             <li> 
               <router-link :to="{ name: 'doimatkhau' }">Đổi mật khẩu</router-link>

@@ -3,7 +3,7 @@
   <div class="col-10 px-2">
     <Header :silderProps="'Loại phòng'"></Header>
     <h3 class="text-center mt-3 mb-3">Danh sách loại phòng</h3>
-    <router-link :to="{ name: 'loaiphong.them' }" >
+    <router-link :to="{ name: 'loaiphong.them' }">
       <button class="btn btn-primary">+</button>
     </router-link>
     <table class="table table-hover mt-2">
@@ -81,12 +81,22 @@ export default {
           showCancelButton: true,
           confirmButtonText: "OK",
         })
-        .then((result) => {
+        .then(async (result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-            loaiphongService.xoaLP(roomtypeID);
-            this.$swal.fire("Đã xóa!", "", "success");
-            this.getAll();
+            let mes = await loaiphongService.xoaLP(roomtypeID);
+            if (
+              mes == "Phòng trọ của loại phòng bạn muốn xóa vẫn còn người ở"
+            ) {
+              this.$swal.fire({
+                title: "Loại phòng này vẫn còn người thuê",
+                showDenyButton: false,
+                confirmButtonText: "OK",
+              });
+            } else {
+              this.$swal.fire("Đã xóa!", "", "success");
+              this.getAll();
+            }
           }
         });
     },

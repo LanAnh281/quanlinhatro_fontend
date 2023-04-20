@@ -47,8 +47,6 @@ export default {
   methods:{
    async layPT(){
     this.phieuthu=await phieuthuService.layPT(this.$route.params.mahd);
-    console.log(this.phieuthu);
-
     }
   }
 } 

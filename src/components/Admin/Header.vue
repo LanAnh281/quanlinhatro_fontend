@@ -2,6 +2,9 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div >
+        <form @submit.prevent="thanhtoan">
+          <button>thanh toán</button>
+      </form>
         
         <router-link :to="{ name: 'admin' }">
           <fa icon="home"></fa>
@@ -31,6 +34,9 @@
 </template>
 
 <script>
+import paypalService from '../../services/paypal.service';
+import loaiphongService from '../../services/loaiphong.service';
+// import axios from "axios";
 export default {
   name: "Header",
   props:['silderProps'],
@@ -45,6 +51,14 @@ export default {
         "token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
       this.$router.push({ name: "login" });
     },
+    async thanhtoan(){
+      console.log('hi');
+      let a=await paypalService.hienTT()
+      console.log(a);
+     var url=await paypalService.taoTT();
+     console.log(url)
+     window.location=url;
+    }
   },
 };
 </script>

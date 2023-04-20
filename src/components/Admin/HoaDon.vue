@@ -83,7 +83,6 @@ export default {
   methods: {
     async layDSHD() {
       this.hoadon = await hoadonService.layDSHD();
-      console.log(this.hoadon.length);
      
       this.hoadon= this.hoadon.filter(async (h,index)=>{
         
@@ -91,7 +90,6 @@ export default {
         this.hoadon[index].tenphong=phong[0].tenphong;
       
       })
-      console.log(this.hoadon);
       
     },
    

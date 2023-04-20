@@ -16,7 +16,7 @@
         <div class="col-sm-10">
           <input
             type="text"
-            :disabled="hopdong.matk"
+            
             v-model="hopdong.matk"
             @blur="validate"
             class="form-control"
@@ -39,7 +39,7 @@
           <input
             type="text"
             class="form-control"
-            :disabled="hopdong.hoten"
+            
             v-model="hopdong.hoten"
             @blur="validate"
             :class="{ 'is-invalid': errors.hoten }"
@@ -215,23 +215,24 @@ export default {
       if(this.$route.params.mahd){
         this.hopdong=await hopdongService.layHD(this.$route.params.mahd);
         this.hopdong=this.hopdong[0];
+        
         var p=await phongService.layPhong(this.hopdong.maphong);
         let lp= await loaiphongService.layLP(p[0].maloai);
         this.hopdong['maloai']=lp.maloai;
         this.hopdong.tenloai=lp.tenloai;
-        this.hopdong.tenphong=p[0].tenphong; 
+        this.hopdong.tenphong=p[0].tenphong;
+
         let khach= await khachhangService.layKH(this.hopdong.stt_tk);
-       
         this.hopdong.hoten=khach.hoten;
         this.hopdong.stt=khach.STT;
         this.hopdong.tentk=khach.matk;
         this.hopdong.matk=khach.matk;
         console.log("mã tk",this.hopdong.matk);
+
         this.hopdong.maphongtruoc=this.hopdong.maphong;
         let lpgia= await loaiphongService.layLP(this.hopdong.maloai);
-      this.hopdong.giaphong=lpgia.giaphong;
+        this.hopdong.giaphong=lpgia.giaphong;
       }
-      // console.log(this.hopdong);
       
     },
     async validate() {
@@ -249,7 +250,6 @@ export default {
         isvalid = false;
       } else if (this.hopdong.matk) {
         let tk = await khachhangService.layKH(this.hopdong.matk.slice(-2));
-        // console.log(tk.length);
         if (tk.length == 0) this.errors.matk = "Mã tài khoản không tồn tại";
         isvalid = false;
       }
@@ -294,34 +294,26 @@ export default {
     },
 
     async tenloai(loai) {
-      console.log("maloai:",loai.target.value);
       let lp= await loaiphongService.layLP(loai.target.value);
       this.hopdong.giaphong=lp.giaphong;
-      console.log("giá phòng",this.hopdong.giaphong);
       this.phong = await phongService.LayTTPTheoLoai(loai.target.value);
       this.phong = this.phong.filter((p, index) => {
         return p.trangthai == "0";
       });
-      console.log(this.phong);
       this.hopdong.maloai=loai.target.value;
       let loaiphong= await loaiphongService.layLP(loai.target.value);
       this.hopdong.tenloai=loaiphong.tenloai;
     },
     async tenphong(phong) {
-      console.log('mã phòng:',phong.target.value);
       this.hopdong.maphong = phong.target.value;
     },
     async save() {
-      console.log(this.hopdong);
       if (this.validate) {
-        console.log(this.hopdong.tenloai);
         if(this.$route.params.mahd){
           let mes=await hopdongService.chinhsuaHD(this.$route.params.mahd,this.hopdong);
           let ob = { trangthai: "1" };
-          console.log(this.hopdong.maphong);
           await phongService.chinhsuaPhong(this.hopdong.maphong, ob);
           let obodd={ trangthai: "0" };
-          console.log(this.hopdong.maphongtruoc);
           await phongService.chinhsuaPhong(this.hopdong.maphongtruoc, obodd);
 
           this.$swal.fire({
@@ -333,7 +325,6 @@ export default {
         let mes = await hopdongService.themHD(this.hopdong);
         if (mes.message == "thêm hợp đồng") {
           let ob = { trangthai: "1" };
-          console.log(this.hopdong.maphong);
           await phongService.chinhsuaPhong(this.hopdong.maphong, ob);
           this.$swal.fire({
             title: "Tạo thành công hợp đồng",

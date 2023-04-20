@@ -171,10 +171,10 @@ export default {
       
         await this.layLP();
         if(this.$route.params.mahd){
-            this.tacvu = { name: 'Cập nhật hóa đơn', submit: 'Cập nhật' };
+            this.tacvu = { name: 'CẬP NHẬT HÓA ĐƠN', submit: 'Cập nhật' };
             await this.layHD()
         } else{
-            this.tacvu = { name: 'Thêm hóa đơn', submit: 'Thêm' }
+            this.tacvu = { name: 'THÊM HÓA ĐƠN', submit: 'Thêm' }
         } 
     },
     methods: {
@@ -187,7 +187,6 @@ export default {
         },
         async layHD(){
             let hd= await hoadonService.layHD(this.$route.params.mahd);
-            console.log(hd)
             this.hoadon['maphong']=hd[0].maphong;
             this.hoadon['mahd']=hd[0].mahd;
             this.hoadon['nam']=hd[0].nam;
@@ -265,7 +264,6 @@ export default {
         }
         else{
             let hd= await hoadonService.themHD(this.hoadon);
-            console.log('thêm hóa đơn');
             if(hd.mes){
                 this.$swal.fire({
                 title: "Tạo thành công hóa đơn",

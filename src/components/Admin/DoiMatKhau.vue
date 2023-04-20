@@ -4,30 +4,7 @@
     <Header :silderProps="'Đổi mật khẩu'"></Header>
     <form @submit.prevent="checkLogin" class="background mt-5">
         <h1 class="text-center mt-5 mb-3">Đổi mật khẩu</h1>
-        <div class="form-group row justify-content-center">
-            <label
-            for="inputPasswordOdd" 
-            class="col-sm-3 col-form-label"
-            style="width: 160px"
-              >Mật khẩu cũ</label
-            >
-            <span>:</span>
-            <div class="col-sm-5">
-              <input
-              type="password"
-              v-model="user.matkhaucu"
-              v-bind:class="{ 'is-invalid': errors.matkhaucu }"
-              @blur="validate()"
-              name="matkhaucu"
-              class="form-control"
-              id="inputPasswordOdd"
-              placeholder="mật khẩu cũ"
-            />
-              <div class="invalid-feedback" v-if="errors.matkhaucu">
-                {{ errors.matkhaucu }}
-              </div>
-            </div>
-          </div>
+     
         <div class="form-group row justify-content-center">
             <label
             for="inputPasswordNew" 
@@ -121,10 +98,7 @@ export default {
         matkhau: "",
       };
       
-      if (!this.user.matkhaucu) {
-        this.errors.matkhaucu = "Bạn cần nhập mật khẩu cũ";
-        valid = false;
-      }
+      
     //   else if(){
 
     //   }

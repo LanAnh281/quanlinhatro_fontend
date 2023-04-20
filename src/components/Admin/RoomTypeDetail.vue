@@ -18,7 +18,7 @@
         <tr>
           <th scope="col">Tên phòng</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col" class="text-center">Thao tác</th>
+          <th scope="col" class="text-center">Chi tiết</th>
         </tr>
       </thead>
       <tbody>
@@ -26,11 +26,14 @@
           <td>{{ p.tenphong }}</td>
           <td>{{ p.trangthai }}</td>
           <td class="text-center">
-            <fa
-              icon="trash"
-              class="mr-2 style trash "
-              v-on:click="onDelete(p.maphong)"
-            ></fa>
+            <router-link
+                :to="{
+                  name: '',
+                  params: {  },
+                }"
+              >
+                <fa icon="info" class="style info"></fa>
+              </router-link>
           </td>
         </tr>
       </tbody>
@@ -96,24 +99,24 @@ export default {
 
         }
     },
-    async onDelete(maphong){
-      console.log('xóa');
-      this.$swal
-        .fire({
-          title: "Bạn có muốn xóa ?",
-          showDenyButton: false,
-          showCancelButton: true,
-          confirmButtonText: "OK",
-        })
-        .then(async (result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            this.thongbao = await phongService.xoaPhong(maphong);
-            this.$swal.fire("Đã xóa!", "", "success");
-            this.layDSP( this.$route.params.maloai);
-          }
-        });
-    }
+    // async onDelete(maphong){
+    //   console.log('xóa');
+    //   this.$swal
+    //     .fire({
+    //       title: "Bạn có muốn xóa ?",
+    //       showDenyButton: false,
+    //       showCancelButton: true,
+    //       confirmButtonText: "OK",
+    //     })
+    //     .then(async (result) => {
+    //       /* Read more about isConfirmed, isDenied below */
+    //       if (result.isConfirmed) {
+    //         this.thongbao = await phongService.xoaPhong(maphong);
+    //         this.$swal.fire("Đã xóa!", "", "success");
+    //         this.layDSP( this.$route.params.maloai);
+    //       }
+    //     });
+    // }
   },
 };
 </script>

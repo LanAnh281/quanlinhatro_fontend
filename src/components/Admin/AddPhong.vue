@@ -1,7 +1,7 @@
 <template>
   <Sidebar class="col-2 px-0"></Sidebar>
   <div class="col-10 px-2">
-    <Header></Header>
+    <Header :silderProps="'Thêm phòng'"></Header>
     <form v-on:submit.prevent="save" class="pl-5">
       <h3 class="text-center my-5">{{ tacvu.name }}</h3>
       <div class="form-group row">
@@ -110,17 +110,17 @@ export default {
   created() {
     if (this.$route.params.maloai) {
       this.layPhong(this.$route.params.maloai);
-      this.tacvu = { name: "Thêm phòng", submit: "Thêm" };
+      this.tacvu = { name: "THÊM PHÒNG", submit: "Thêm" };
     }
   },
   methods: {
     async layPhong(maloai) {
       this.phong = await loaiphongService.layLP(maloai);
       this.phong.tenphong = "";
-      console.log(this.phong);
     },
     async validate() {
       let isEmpty = true;
+      this.error.tenphong='';
       if (!this.phong.tenphong) {
         this.error.tenphong = "Tên phòng không được bỏ trống";
         isEmpty = false;
@@ -129,17 +129,15 @@ export default {
         let tenphong = await phongService.LayTTPTheoLoai(
           this.$route.params.maloai
         );
-        console.log(tenphong);
-        let isEmpty = tenphong.every((p, index) => {
+        let isEmptyTP = tenphong.every((p, index) => {
           return p.tenphong != this.phong.tenphong;
         });
-        if (!isEmpty) this.error.tenphong = "Tên phòng đã tồn tại";
+        if (!isEmptyTP) this.error.tenphong = "Tên phòng đã tồn tại";
         return isEmpty;
       }
     },
     async save() {
       let check =await this.validate();
-      console.log("check:",check)
       if (check) {
         let message = await phongService.themPhong(
           this.$route.params.maloai,
