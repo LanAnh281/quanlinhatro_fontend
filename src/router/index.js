@@ -1,16 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
 const routes=[
-    // {
-    //     path:"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-5C1041736G469025V",
-    //     name:"paypal",
-    //     // component: ()=>import('../components/login.vue'),
-    // },
-    {
-        path:"/",
-        name:"login",
-        component: ()=>import('../components/login.vue'),
-    },
+
+   
+
     {
         path:"/",
         name:"login",
@@ -110,12 +103,7 @@ const routes=[
         name:"hoadon.chinhsua",
         component:()=>import('../components/Admin/AddHoaDon.vue'),
     },
-    //user
-    {
-        path:"/user",
-        name:"user",
-        component: ()=>import('../components/user/userHeader.vue'),
-    },
+   
     //loaiphong admin
     {
         path:"/loaiphong",
@@ -143,6 +131,23 @@ const routes=[
         component:()=>import('../components/Admin/AddRoomType.vue'),
         // props:true
     },
+
+//USER
+ //user
+ {
+    path:"/user",
+    name:"user",
+    component: ()=>import('../components/user/userHeader.vue'),
+},
+//doi mat khau user
+    {
+        path:"/user/doimatkhau",
+        name:"userdoimatkhau",
+        component:()=>import('../components/User/UserDoiMatKhau.vue'),          // props:true
+    },
+    
+
+
 ];
 
 const router=createRouter({
