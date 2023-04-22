@@ -5,7 +5,7 @@
       <Slide v-for="(slide,index) in 10" :key="index">
         <div class="carousel__item">
           <p>{{index}}</p>
-          <img :src="getImgUrl(index)" >  
+          
         </div>
       </Slide>
   
@@ -35,12 +35,12 @@ export default defineComponent({
     }
   },
   methods:{
-    getImgUrl(pet) {
+  //   getImgUrl(pet) {
     
-    var images = require.context('../assets/', false, /\.png$/);
-    var src=images('./' + pet + ".png");
-    return src;
-  }
+  //   var images = require.context('../assets/', false, /\.png$/);
+  //   var src=images('./' + pet + ".png");
+  //   return src;
+  // }
 
   }
 })

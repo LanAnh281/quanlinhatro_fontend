@@ -6,7 +6,7 @@
           <button>thanh toán</button>
       </form>
         
-        <router-link :to="{ name: 'admin' }">
+        <router-link :to="{ name: 'admin' }" style="color:blue">
           <fa icon="home"></fa>
         </router-link>
 
@@ -14,20 +14,25 @@
       </div>
 
       <div>
-        <ul>
-          <li>
-            <fa icon="user"></fa>
-            <fa icon="chevron-down" class="pl-2"></fa>
-
-            <ul>
-              <li>
-                <router-link :to="{ name: 'nhatro' }">Nhà Trọ</router-link>
-              </li>
-              <li> <router-link :to="{ name: 'doimatkhau' }">Đổi mật khẩu</router-link></li>
-              <li @click="logout">Đăng xuất</li>
-            </ul>
-          </li>
-        </ul>
+        <nav class="col-2 navbar navbar-expand-lg navbar-light list">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item" style="width: 100px; padding-left: 50px">
+              <fa icon="user"></fa>
+              <fa icon="chevron-down" class="pl-2"></fa>
+              <ul>
+                <li>
+                  <router-link :to="{ name: 'nhatro' }">Nhà trọ</router-link>
+                </li>
+                <li>
+                  <router-link :to="{ name: 'doimatkhau' }">
+                    Đổi mật khẩu
+                  </router-link>
+                </li>
+                <li @click="logout">Đăng xuất</li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
       </div>
     </nav>
   </header>
@@ -65,8 +70,12 @@ export default {
 
 <style scoped>
 li:hover a {
-  color: #2f89fc;
   text-decoration: none;
+}
+a:hover{
+  color:rgb(255, 240, 255);
+  display: inline-block;
+  background-color: transparent;
 }
 .navbar {
   height: 60px;
@@ -76,40 +85,63 @@ li:hover a {
 .navbar {
   width: 100%;
 }
+a{
+  color: #fff;
+}
+a:hover{
+  color:yellow;
+}
+li {
+  transition: 1s all;
+  color: #b23808;
+  padding: 10px;
+
+}
+
+li:hover {
+  transition: 1s all;
+  color: #f20808;
+  border-top-right-radius: 10px 10px;
+  border-bottom-right-radius: 10px 10px;
+  border-top-left-radius: 10px 10px;
+  border-bottom-left-radius: 10px 10px;
+  cursor: pointer;
+}
+
+li ul {
+  top: 100;
+  left: -64px;
+  width: 154px;
+  background-image: linear-gradient(
+    to right,
+    rgb(243, 167, 180),
+    rgb(133, 43, 235),
+    rgb(182, 32, 182)
+  );
+  display: none;
+  position: absolute;
+  border-radius: 16px;
+}
+li ul li{
+  border-bottom: 1px #ffff solid;
+
+}
+li:hover > ul {
+  display: block;
+  cursor: pointer;
+}
+.navbar {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
 ul {
   z-index: 1;
   padding-left: 0;
   list-style: none;
 }
-
-li {
-  margin-top: 15px;
-  padding: 10px;
-  transition: 1s all;
-  font-size: 18px;
-  color: #fff;
-  display: block;
-  background-color: red;
-  border-radius: 18px;
+.navbar {
+  width: 100%;
 }
 
-li:hover {
-  transition: 1s all;
-  color: #2f89fc;
-  background-color: rgba(42, 56, 65, 0.82);
-  border-top-right-radius: 10px 10px;
-  border-bottom-right-radius: 10px 10px;
-  cursor: pointer;
-}
-li ul {
-  width: 200px;
-  background: #1e2b32;
-  display: none;
-  position: absolute;
-}
-
-li:hover > ul {
-  display: block;
-  cursor: pointer;
-}
 </style>

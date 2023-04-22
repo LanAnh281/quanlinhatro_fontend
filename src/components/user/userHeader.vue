@@ -21,18 +21,9 @@
             Hóa đơn
           </router-link>
         </li>
-
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Dịch vụ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Đơn giá</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Hợp đồng</a>
-        </li> -->
       </ul>
     </nav>
+    <!--  -->
     <nav class="col-2 navbar navbar-expand-lg navbar-light list">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" style="width: 100px; padding-left: 50px">

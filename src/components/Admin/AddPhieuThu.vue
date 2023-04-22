@@ -92,6 +92,8 @@ export default {
   name: "in",
   data() {
     return {
+      dieuhuong:{phieuthu:true},
+
       ngaylap: "",
       nhatro: { type: Object },
       khachhang: { type: Object },
@@ -171,6 +173,8 @@ table{
 }
 th{
     border:1px solid black !important;
+    font-weight: bold;
+
 }
 td{
     border:1px solid black;

@@ -13,29 +13,29 @@
   >
     <ul>
       <li class="header">Admin</li>
-      <li>
+      <li :class="{isAcctive : dieuhuongProps.hopdong}">
         <router-link :to="{ name: 'admin' }"> Hợp đồng</router-link>
       </li>
-      <li>
+      <li :class="{isAcctive : dieuhuongProps.khachhang}">
         <router-link :to="{ name: 'khachhang' }"> Khách hàng </router-link>
       </li>
-      <li>
+      <li :class="{isAcctive : dieuhuongProps.loaiphong}">
         <router-link :to="{ name: 'loaiphong' }"> Loại phòng</router-link>
       </li>
-      <li>
+      <li :class="{isAcctive : dieuhuongProps.hoadon}">
         <router-link :to="{ name: 'hoadon' }"> Hóa đơn</router-link>
       </li>
-      <li>
+      <li :class="{isAcctive : dieuhuongProps.phieugiahan}">
         <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>
       </li>
-      <li style="position: relative;">
+      <li style="position: relative;" :class="{isAcctive : dieuhuongProps.thongke}">
         Thống kê
           <ul class="p0 m0" style="position: absolute;">
             <li >
-              <router-link :to="{ name: 'nhatro' }">Điện-Nước</router-link>
+              <router-link :to="{ name: 'thongke.diennuoc' }">Điện-Nước</router-link>
             </li>
             <li> 
-              <router-link :to="{ name: 'doimatkhau' }">Đổi mật khẩu</router-link>
+              <router-link :to="{ name: '' }"></router-link>
             </li>
           </ul>
         </li>        
@@ -49,29 +49,35 @@ import loaiphongService from "@/services/loaiphong.service";
 export default {
   name: "Sidebar",
   comments: {},
-  data() {
-    const layDSLP = async () => {
-      try {
-        this.loaiphong = await loaiphongService.layDSLP();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    return {
-      loaiphong: layDSLP(),
-    };
-  },
+  props:['dieuhuongProps'],
+  
+  created(){
+    // this.dieuhuong.hopdong=true;
+  }
 };
 </script>
 
 <style scoped>
+.isAcctive{
+  background: #E1FFFE;
+ 
+}
+.isAcctive a{
+  color:#5c1ad9
+}
+
 a {
   color: #fff;
   position: relative;
   display: block;
 }
+a:hover{
+  background-color: transparent;
+ 
+}
+
 li:hover a {
-  color: #2f89fc;
+  color: yellow;
   text-decoration: none;
 }
 .header {

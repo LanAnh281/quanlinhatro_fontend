@@ -1,5 +1,5 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
+  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="tacvu.ten"></Header>
     <h3 class="text-center my-5">
@@ -177,6 +177,8 @@ export default {
 
   data() {
     return {
+      dieuhuong:{hopdong:true},
+
       tacvu:{ten:'',submit:''},
       loaiphong: [],
       phong: [],

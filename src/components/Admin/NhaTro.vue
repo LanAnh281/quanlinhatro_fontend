@@ -1,34 +1,42 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
+  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Nhà Trọ'"></Header>
 
-    <h3 class="text-center mt-5 mb-3">Thông tin nhà trọ</h3>
-    <router-link :to="{ name: '' }" class="mr-5" style="float:right">
-      <button class="btn btn-primary">Cập nhật</button>
-    </router-link>
-
-    <div v-for="(nt, index) in nhatro" :key="index">
-      <table class="table " v-for="(nt,index) in nhatro" :key="index">
-        <tr>
-          <th scope="col">Tên nhà trọ</th>
-          <td scope="col">:&nbsp;{{nt.tennhatro}}</td>
-        </tr>
-
-        <tr>
-          <th scope="col">Họ tên</th>
-          <td scope="col">:&nbsp;{{nt.hoten}}</td>
-        </tr>
-        <tr>
-          <th scope="col">SĐT</th>
-          <td scope="col">:&nbsp;{{nt.sdt}}</td>
-        </tr>
-        <tr>
-          <th scope="col">Địa chỉ</th>
-          <td scope="col">:&nbsp; {{nt.diachi}}</td>
-        </tr>
-      </table>
+    <h3 class="text-center mt-5 mb-4">Thông tin nhà trọ</h3>
+    <div class="mx-3">
+      <label>Tên nhà trọ</label><span>: &nbsp;{{ nhatro.tennhatro }}</span>
+      <br />
+      <label>SĐT</label><span>: &nbsp;{{ nhatro.sdt }}</span
+      ><br />
+      <label>Địa chỉ</label><span>: &nbsp;{{ nhatro.diachi }}</span
+      ><br />
     </div>
+    <!-- <router-link :to="{ name: '' }" class="mr-5" >
+      <button class="btn btn-primary">Cập nhật</button>
+    </router-link> -->
+<h4 class="text-center my-4">Bảng Giá</h4>
+    <table class="table mx-3 text-center">
+      
+      <thead>
+        <th>Nội dung</th>
+        <th>Đơn vị</th>
+        <th>Đơn giá (VND)</th>
+      </thead>
+      <tbody>
+       
+        <tr>
+          <th>Tiền Điện</th>
+          <td>kWh</td>
+          <td>{{diennuoc.giadien}}</td>
+        </tr>
+        <tr>
+          <th>Tiền Nước</th>
+          <td>m³</td>
+          <td>{{diennuoc.gianuoc}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
@@ -36,22 +44,31 @@ import Header from "./Header.vue";
 import Sidebar from "./sidebar.vue";
 
 import nhatroService from "@/services/nhatro.service";
+import diennuocService from "../../services/giadiennuoc.services";
 export default {
   name: "nhatro",
   components: { Header, Sidebar },
   data() {
     return {
+      dieuhuong:{nhatro:true},
+
       nhatro: { type: Array },
+      diennuoc:{type:Object}
     };
   },
   created() {
     this.TTNT();
+    this.layDN();
   },
   methods: {
     async TTNT() {
       this.nhatro = await nhatroService.layTTNT();
-     
+      this.nhatro = this.nhatro[0];
     },
+    async layDN(){
+      this.diennuoc=await diennuocService.layGDN();
+      this.diennuoc=this.diennuoc[this.diennuoc.length-1];
+    }
   },
 };
 </script>
@@ -71,14 +88,23 @@ export default {
 .trash {
   color: red;
 }
-.table{
-    left :35% ;
+label {
+  width: 140px;
+  font-weight: 600;
 }
- td,th{
-    border: 1px solid white ;
+table {
+  display: table;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border: 1px solid black !important;
+  border-collapse: collapse;
 }
-th{
-    width: 160px;
-    font-weight: bold;
+th {
+  border: 1px solid black !important;
+  font-weight: bold;
+}
+td {
+  border: 1px solid black;
 }
 </style>

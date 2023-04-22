@@ -131,6 +131,13 @@ const routes=[
         component:()=>import('../components/Admin/AddRoomType.vue'),
         // props:true
     },
+    //Thống kê
+    {
+        path:"/thongke/diennuoc",
+        name:"thongke.diennuoc",
+        component:()=>import('../components/Admin/TKDienNuoc.vue'),
+        
+    },
 
 //USER
  //user

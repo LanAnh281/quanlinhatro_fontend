@@ -1,5 +1,5 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
+  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Thêm phòng'"></Header>
     <form v-on:submit.prevent="save" class="pl-5">
@@ -102,6 +102,8 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
+      dieuhuong:{phong:true},
+
       tacvu: { name: "", submit: "" },
       phong: { type: Object },
       error: { tenphong: "" },

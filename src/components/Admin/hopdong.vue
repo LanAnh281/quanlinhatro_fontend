@@ -50,6 +50,7 @@ export default {
   components: [],
   data() {
     return {
+
       hopdong: { type: Array },
     };
   },

@@ -1,5 +1,5 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
+  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Loại phòng'"></Header>
     <h3 class="text-center mt-3 mb-3">Danh sách loại phòng</h3>
@@ -63,6 +63,7 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
+      dieuhuong:{loaiphong:true},
       roomtype: [],
     };
   },

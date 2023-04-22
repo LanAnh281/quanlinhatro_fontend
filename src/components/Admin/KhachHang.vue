@@ -1,5 +1,5 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
+  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Khách hàng'"></Header>
 
@@ -50,6 +50,8 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
+      dieuhuong:{khachhang:true},
+
       thongbao: { type: Object },
       khachhang: [],
     };

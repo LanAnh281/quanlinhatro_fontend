@@ -1,5 +1,5 @@
 <template>
-  <Sidebar class="col-2 px-0"></Sidebar>
+  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Hóa đơn'"></Header>
     <h3 class="text-center mt-5 mb-3">Danh sách hóa đơn </h3>
@@ -74,6 +74,8 @@ export default {
 
   data() {
     return {
+      dieuhuong:{hoadon:true},
+
       hoadon: { type: Object },
     };
   },
