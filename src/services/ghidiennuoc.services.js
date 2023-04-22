@@ -16,6 +16,9 @@ class hoadonService{
     async chinhsuaDN(data){
         return (await this.api.put(`/`,data)).data;
     };
+    async thongkeDN(nam){
+        return (await this.api.get(`/thongke/${nam}`)).data;
+    };
    
    
 }

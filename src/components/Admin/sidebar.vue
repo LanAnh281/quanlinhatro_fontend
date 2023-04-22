@@ -28,11 +28,11 @@
       <li :class="{isAcctive : dieuhuongProps.phieugiahan}">
         <router-link :to="{ name: 'phieugiahan' }"> Phiếu gia hạn</router-link>
       </li>
-      <li style="position: relative;" :class="{isAcctive : dieuhuongProps.thongke}">
+      <li style="position: relative;"  :class="{isAcctive : dieuhuongProps.thongke}" >
         Thống kê
           <ul class="p0 m0" style="position: absolute;">
             <li >
-              <router-link :to="{ name: 'thongke.diennuoc' }">Điện-Nước</router-link>
+              <router-link :to="{ name: 'chartTK' }">Điện-Nước</router-link>
             </li>
             <li> 
               <router-link :to="{ name: '' }"></router-link>
@@ -60,7 +60,7 @@ export default {
 <style scoped>
 .isAcctive{
   background: #E1FFFE;
- 
+  color:#5c1ad9
 }
 .isAcctive a{
   color:#5c1ad9

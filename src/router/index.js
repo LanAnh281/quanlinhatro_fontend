@@ -2,7 +2,11 @@ import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
 const routes=[
 
-   
+    {
+        path:"/chartTK",
+        name:"chartTK",
+        component: ()=>import('../components/Admin/TKDN.vue'),
+    },
 
     {
         path:"/",
@@ -88,6 +92,7 @@ const routes=[
         name:"phieugiahan",
         component:()=>import('../components/Admin/PhieuGiaHan.vue'),
     },
+    //hóa đơn
     {
         path:"/hoadon",
         name:"hoadon",
@@ -132,12 +137,7 @@ const routes=[
         // props:true
     },
     //Thống kê
-    {
-        path:"/thongke/diennuoc",
-        name:"thongke.diennuoc",
-        component:()=>import('../components/Admin/TKDienNuoc.vue'),
-        
-    },
+    
 
 //USER
  //user

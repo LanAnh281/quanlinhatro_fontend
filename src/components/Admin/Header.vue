@@ -5,7 +5,8 @@
         <form @submit.prevent="thanhtoan">
           <button>thanh toán</button>
       </form>
-        
+     
+      
         <router-link :to="{ name: 'admin' }" style="color:blue">
           <fa icon="home"></fa>
         </router-link>
