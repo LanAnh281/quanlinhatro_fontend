@@ -4,7 +4,7 @@
     <Header :silderProps="'Phiếu gia hạn'"></Header>
 
     <h3 class="text-center  mt-3 mb-3">Danh sách phiếu gia hạn</h3>
-    <table class="table table-hover mt-2">
+    <table class="table table-hover my-5">
       <thead>
         <tr>
           <th style="width: 140px">Mã phiếu</th>

@@ -32,10 +32,16 @@
         Thống kê
           <ul class="p0 m0" style="position: absolute;">
             <li >
-              <router-link :to="{ name: 'chartTK' }">Điện-Nước</router-link>
+              <router-link :to="{ name: 'chartTK',
+              params:{nam:namhientai}
+              }"
+              >
+                Điện-Nước</router-link>
             </li>
             <li> 
-              <router-link :to="{ name: '' }"></router-link>
+              <router-link :to="{ name: 'chartTT',params:{nam:namhientai}  }">
+                Tiền trọ
+              </router-link>
             </li>
           </ul>
         </li>        
@@ -50,10 +56,16 @@ export default {
   name: "Sidebar",
   comments: {},
   props:['dieuhuongProps'],
-  
+  data(){
+    return{
+      namhientai: '',
+    }
+  },
   created(){
-    // this.dieuhuong.hopdong=true;
+    var today= new Date();
+    this.namhientai= today.getFullYear();
   }
+ 
 };
 </script>
 

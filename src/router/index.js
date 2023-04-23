@@ -1,11 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
 const routes=[
-
+//Thống kê điện nước
     {
-        path:"/chartTK",
+        path:"/chartTK/:nam",
         name:"chartTK",
         component: ()=>import('../components/Admin/TKDN.vue'),
+    },
+    {
+        path:"/chartTT/:nam",
+        name:"chartTT",
+        component: ()=>import('../components/Admin/TienTro.vue'),
     },
 
     {
@@ -67,8 +72,8 @@ const routes=[
     },
     //hóa đơn
     {
-        path:"/hoadon/:mahd",
-        name:"hoadon.chitiet",
+        path:"/phieuthu/:mahd",
+        name:"phieuthu.chitiet",
         component:()=>import('../components/Admin/PhieuThu.vue'),
         
     },
@@ -136,7 +141,7 @@ const routes=[
         component:()=>import('../components/Admin/AddRoomType.vue'),
         // props:true
     },
-    //Thống kê
+   
     
 
 //USER
