@@ -28,10 +28,13 @@ export default {
   },
   async created() {
     this.quyen= await loginServices.Quyen();
-   
-    if(this.quyen.message=='chuadangnhap'){
+    console.log(this.quyen);
+    if(this.quyen.message==='chuadangnhap'){
       this.$router.push({ name: "login" });
     }
+    if(this.quyen.message!=='chutro'){
+        this.$router.push({ name: "login" });
+      }
   },
   
 };

@@ -29,6 +29,7 @@ const routes=[
         name:"admin",
         component:admin,  
     },
+    
     //doi mat khau
     {
         path:"/doimatkhau",
@@ -145,11 +146,11 @@ const routes=[
     
 
 //USER
- //user
- {
+
+{
     path:"/user",
     name:"user",
-    component: ()=>import('../components/user/userHeader.vue'),
+    component: ()=>import('../views/user.vue'),
 },
 //doi mat khau user
     {

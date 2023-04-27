@@ -1,5 +1,4 @@
 <template>
-    <slider class="col-12"></slider>
   <header class="col-12 row justify-content-between">
     <nav class="col-8 mx-4 navbar navbar-expand-lg navbar-light">
       <ul class="navbar-nav mr-auto text-center">
@@ -27,7 +26,7 @@
     <nav class="col-2 navbar navbar-expand-lg navbar-light list">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" style="width: 100px; padding-left: 50px">
-          <fa icon="user"></fa>
+          <fa icon="user" style="color: brown;"></fa>
           <fa icon="chevron-down" class="pl-2"></fa>
           <ul>
             <li>
@@ -46,10 +45,8 @@
   </header>
 </template>
 <script>
-import slider from '../user/slider.vue';
 export default {
   name: "userHeader",
-  components: { slider },
   data() {
     return {};
   },
@@ -76,7 +73,7 @@ export default {
   width: 100%;
 }
 header {
-  background-color: #d5f7f2;
+ background-color: transparent;
 }
 li {
   line-height: 3;
