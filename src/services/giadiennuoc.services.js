@@ -7,6 +7,9 @@ class hoadonService{
     async layGDN(){
         return (await this.api.get("/")).data;
     };
+    async themGDN(data){
+        return (await this.api.post("/",data)).data;
+    };
    
 }
 

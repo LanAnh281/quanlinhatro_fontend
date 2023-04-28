@@ -12,7 +12,7 @@
       
   >
     <ul>
-      <li class="header">Admin</li>
+      <li class="header ">{{nhatro.hoten}}</li>
       <li :class="{isAcctive : dieuhuongProps.hopdong}">
         <router-link :to="{ name: 'admin' }"> Hợp đồng</router-link>
       </li>
@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-import loaiphongService from "@/services/loaiphong.service";
+import nhatroService from "@/services/nhatro.service";
 
 export default {
   name: "Sidebar",
@@ -59,12 +59,17 @@ export default {
   data(){
     return{
       namhientai: '',
+      nhatro:{type:Object}
     }
   },
-  created(){
+  async created(){
     var today= new Date();
     this.namhientai= today.getFullYear();
+    this.nhatro= await nhatroService.layTTNT(); 
+    this.nhatro=this.nhatro[0];
+
   }
+
  
 };
 </script>

@@ -92,6 +92,12 @@ const routes=[
         component:()=>import('../components/Admin/NhaTro.vue'),
         
     },
+    {
+        path:"/nhatro/chinhsua",
+        name:"nhatro.chinhsua",
+        component:()=>import('../components/Admin/Update.vue'),
+        
+    },
     //phiếu gia hạn
     {
         path:"/phieugiahan",

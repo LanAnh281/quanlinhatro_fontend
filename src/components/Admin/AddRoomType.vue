@@ -4,60 +4,87 @@
       <Header :silderProps="tacvu.name"></Header>
     <form v-on:submit.prevent="save" class="pl-5">
       <h3 class="text-center my-5">{{tacvu.name}}</h3>
-      <div class="form-group">
-        <label for="tenloai">Tên loại</label>
-        <input
+      <div class="form-group row">
+        <div class="col-sm-2 pr-0">
+          <label for="tenloai" class="col-form-label" style="width: 120px"
+            >Tên loại</label
+          >
+          <span>:</span>
+        </div>   
+        <div class="col-sm-10">
+
+             <input class=" form-control"
           type="text"
           v-model="roomtype.tenloai"
-          v-bind:class="{ 'is-invalid': errors.tenloai }"
-          @blur="validate()"
+          v-bind:class="{ 'is-invalid': errors.tenloai && errors.solan>0  }"
+          @blur="errors.solan>0 ? validate(): null"
           name="tenloai"
-          class="form-control"
+         
           id="tenloai"
-          aria-describedby="emailHelp"
+          aria-describedby="tên loại"
           placeholder="tên loại phòng"
         />
         <div class="invalid-feedback" v-if="errors.tenloai">
           {{ errors.tenloai }}
         </div>
+        </div>
+
       </div>
-      <div class="form-group">
-        <label for="dientich">Diện tích</label>
-        <input
+      <div class="form-group row">
+        <div class="col-sm-2 pr-0">
+          <label for="dientich" class="col-form-label" style="width: 120px"
+            >Diện tích</label
+          >
+          <span>:</span>
+        </div>
+        <div class="col-sm-10">
+          
+        <input class="form-control"
           type="number"
           v-model="roomtype.dientich"
-          v-bind:class="{ 'is-invalid': errors.dientich }"
-          @blur="validate()"
-          class="form-control"
+          v-bind:class="{ 'is-invalid': errors.dientich && errors.solan>0 }"
+          @blur="errors.solan>0 ? validate():null"
           name="dientich"
           id="dientich"
-          min="20"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
+         
+          placeholder="diện tích loại phòng"
         />
-        <div class="invalid-feedback" v-if="errors.dientich">
+        <div class="invalid-feedback" v-if="errors.dientich && errors.solan>0">
           {{ errors.dientich }}
         </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="giaphong">Giá phòng</label>
-        <input
+      <div class="form-group row">
+        <div class="col-sm-2 pr-0">
+          <label for="giaphong" class="col-form-label" style="width: 120px"
+            >Giá phòng</label
+          >
+          <span>:</span>
+        </div>  
+        <div class="col-sm-10">
+        
+        <input class="form-control"
           type="number"
           v-model="roomtype.giaphong"
-          v-bind:class="{ 'is-invalid': errors.giaphong }"
-          @blur="validate()"
-          class="form-control"
+          v-bind:class="{ 'is-invalid': errors.giaphong && errors.solan>0}"
+          @blur="errors.solan>0 ? validate():null"
+          
           name="giaphong"
           id="giaphong"
           placeholder="giá phòng"
-        />
-        <div class="invalid-feedback" v-if="errors.giaphong">
+        /><div class="invalid-feedback" v-if="errors.giaphong && errors.solan>0">
           {{ errors.giaphong }}
         </div>
+        </div>
+        
       </div>
 
-      <button class="btn btn-primary">{{tacvu.submit}}</button>
-    </form>
+      <div class="my-2">
+        <label class="col-sm-2 col-form-label"></label>
+        <button class="btn btn-primary col-2" style="height: 40px">
+          {{ tacvu.submit }}
+        </button>
+      </div>    </form>
   </div>
 </template>
 <script>
@@ -74,6 +101,7 @@ export default {
       dieuhuong:{loaiphong:true},
 
       errors: {
+        solan:0,
         tenloai: "",
         giaphong: "",
         dientich: "",
@@ -106,6 +134,7 @@ export default {
     validate() {
       let isvalid = true;
       this.errors = {
+        solan:0,
         tenloai: "",
         giaphong: "",
         dientich: "",
@@ -122,7 +151,9 @@ export default {
         isvalid = false;
       }
       if (!this.roomtype.giaphong) {
+        
         this.errors.giaphong = "Giá phòng không được trống";
+        console.log(this.errors.giaphong);
         isvalid = false;
       }
       return isvalid;
@@ -131,19 +162,31 @@ export default {
       return /^\d*$/.test(value);
     },
     async save() {
-      if (this.validate()) {
-        console.log(this.roomtype);
+      if(!this.validate()){
+        this.errors.solan++;
+      }
+      
+      else if (this.validate()) {
+        // console.log(this.roomtype);
         if (this.$route.params.maloai) {
           await loaiphongService
             .capNhatLP(this.$route.params.maloai, this.roomtype)
             .then((res) => {
-              this.$router.push({ name: "admin" });
+              this.$swal.fire({
+                title: "Cập nhật thành công loại phòng",
+                confirmButtonText: "OK",
+              });
+              // this.$router.push({ name: "admin" });
               return;
             });
             return;
         } else {
           await loaiphongService.themLP(this.roomtype).then((res) => {
-            this.$router.push({ name: "admin" });
+            this.$swal.fire({
+                title: "Thêm thành công loại phòng mới",
+                confirmButtonText: "OK",
+              });
+            // this.$router.push({ name: "admin" });
             return;
           });
         }

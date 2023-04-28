@@ -28,7 +28,7 @@ export default {
   },
   async created() {
     this.quyen= await loginServices.Quyen();
-    console.log(this.quyen);
+    // console.log(this.quyen);
     if(this.quyen.message==='chuadangnhap'){
       this.$router.push({ name: "login" });
     }

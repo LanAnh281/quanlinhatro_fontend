@@ -54,7 +54,7 @@
           </div>
         </div>
     
-        <div class="form-group row justify-content-center">
+        <div class="form-group row justify-content-center mt-2">
           <label class="col-sm-3 col-form-label"></label>
           <div class="col-sm-5">
             <button type="submit" class="btn btn-primary">Cập nhật</button>

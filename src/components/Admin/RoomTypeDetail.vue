@@ -1,5 +1,5 @@
 <template>
-  <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
+  <Sidebar class="col-2 px-0 " :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Chi tiết loại phòng'"></Header>
     <h3 class="text-center  mt-3 mb-3">Chi tiết loại phòng</h3>
@@ -7,25 +7,25 @@
       <p><span>Tên loại:</span> {{ loaiphong.tenloai }}</p>
       <p><span>Diện tích:</span> {{ loaiphong.dientich }} m<sup>2</sup></p>
       <p><span>Giá phòng:</span> {{ loaiphong.giaphong }} ngàn đồng</p>
-      <router-link :to="{ name: 'phong.them' }" >
-        <button class="btn btn-primary">+</button>
-      </router-link>
+     
     </div>
   
-
-    <table class="table table-hover mt-2 mx-5">
+    <router-link :to="{ name: 'phong.them' }" >
+      <button class="btn btn-primary mb-2 mx-5" title="thêm">+</button>
+    </router-link>
+    <table class="table table-hover mt-2 mx-5 text-center">
       <thead>
         <tr>
           <th scope="col">Tên phòng</th>
           <th scope="col">Trạng thái</th>
-          <th scope="col" class="text-center">Chi tiết</th>
+          <!-- <th scope="col" class="text-center">Chi tiết</th> -->
         </tr>
       </thead>
       <tbody>
         <tr :key="index" v-for="(p, index) in phong">
           <td>{{ p.tenphong }}</td>
           <td>{{ p.trangthai }}</td>
-          <td class="text-center">
+          <!-- <td class="text-center">
             <router-link
                 :to="{
                   name: '',
@@ -34,7 +34,7 @@
               >
                 <fa icon="info" class="style info"></fa>
               </router-link>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
@@ -122,9 +122,25 @@ export default {
   },
 };
 </script>
-<style>
-
+<style scoped>
+a:hover{
+  background-color: transparent;
+}
 .trash {
   color: red;
+}
+.table{
+  width: 700px;
+  border-collapse: collapse;  border:1px solid black;
+
+  
+}
+th{
+  font-weight: bold;
+  border:1px solid black !important;
+
+}
+td{
+  border:1px solid black;
 }
 </style>

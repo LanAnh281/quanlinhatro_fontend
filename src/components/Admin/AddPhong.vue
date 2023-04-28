@@ -112,7 +112,7 @@ export default {
   created() {
     if (this.$route.params.maloai) {
       this.layPhong(this.$route.params.maloai);
-      this.tacvu = { name: "THÊM PHÒNG", submit: "Thêm" };
+      this.tacvu = { name: "Thêm phòng", submit: "Thêm" };
     }
   },
   methods: {

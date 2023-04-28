@@ -9,9 +9,9 @@
     <table class="table table-hover mt-2">
       <thead>
         <tr>
-          <th scope="col">Tên phòng</th>
+          <th scope="col">Tên loại</th>
           <th scope="col">Diện tích (m<sup>2</sup>)</th>
-          <th scope="col">Giá phòng (ngàn đồng)</th>
+          <th scope="col">Giá phòng (đồng)</th>
           <th scope="col">Thao tác</th>
         </tr>
       </thead>

@@ -2,9 +2,9 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div >
-        <form @submit.prevent="thanhtoan">
+        <!-- <form @submit.prevent="thanhtoan">
           <button>thanh toán</button>
-      </form>
+      </form> -->
      
       
         <router-link :to="{ name: 'admin' }" style="color:blue">
@@ -52,13 +52,13 @@ export default {
         name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     },
     logout() {
-      console.log("logout");
+      // console.log("logout");
       document.cookie =
         "token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
       this.$router.push({ name: "login" });
     },
     async thanhtoan(){
-      console.log('hi');
+      // console.log('hi');
       let a=await paypalService.hienTT()
       console.log(a);
      var url=await paypalService.taoTT();

@@ -1,11 +1,11 @@
 <template >
   <div class="dangnhap col-12">
-    <header class="my-3 px-2">
+    <header class="mt-3 mb-5 px-2">
       <img src="../assets/img/logo.PNG" />
     </header>
   
     <form @submit.prevent="checkLogin" class="background  form-d mt-5">
-      <h1 class="text-center mt-5 mb-3">Đăng nhập</h1>
+      <h1 class="text-center mt-5 mb-5">ĐĂNG NHẬP</h1>
       <div class="form-group row justify-content-center mt-2">
         <label
           for="matk"
@@ -57,7 +57,7 @@
   
       <div class="form-group row justify-content-center">
         <label class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
+        <div class="col-sm-5 mt-2">
           <button type="submit" class="btn btn-primary">Đăng nhập</button>
         </div>
       </div>

@@ -7,6 +7,9 @@ class nhatroService{
     async layTTNT(){
         return (await this.api.get("/")).data;
     };
+    async chinhsuaNT(data){
+        return (await this.api.put("/",data)).data;
+    };
     
 }
 export default new nhatroService();

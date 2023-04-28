@@ -4,17 +4,23 @@
     <Header :silderProps="'Nhà Trọ'"></Header>
 
     <h3 class="text-center mt-5 mb-4">Thông tin nhà trọ</h3>
-    <div class="mx-3">
-      <label>Tên nhà trọ</label><span>: &nbsp;{{ nhatro.tennhatro }}</span>
-      <br />
-      <label>SĐT</label><span>: &nbsp;{{ nhatro.sdt }}</span
-      ><br />
-      <label>Địa chỉ</label><span>: &nbsp;{{ nhatro.diachi }}</span
-      ><br />
+    <div class="row">
+      <div class="ml-3 col-9">
+        <label>Tên nhà trọ</label><span>: &nbsp;{{ nhatro.tennhatro }}</span>
+        <br />
+        <label>SĐT</label><span>: &nbsp;{{ nhatro.sdt }}</span
+        ><br />
+        <label>Địa chỉ</label><span>: &nbsp;{{ nhatro.diachi }}</span
+        ><br />
+      </div>
+      
+        <router-link :to="{ name: 'nhatro.chinhsua' }" class="col-2" >
+          <button class="btn btn-primary ">Cập nhật</button>
+        </router-link>
+
+      
+
     </div>
-    <!-- <router-link :to="{ name: '' }" class="mr-5" >
-      <button class="btn btn-primary">Cập nhật</button>
-    </router-link> -->
 <h4 class="text-center my-4">Bảng Giá</h4>
     <table class="table mx-3 text-center">
       
@@ -74,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+a:hover{
+  background-color: transparent;
+}
 .style {
   padding: 1px;
   width: 16px;
