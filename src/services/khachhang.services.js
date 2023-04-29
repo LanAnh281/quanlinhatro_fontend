@@ -19,6 +19,9 @@ class khachhangService{
     async xoaKH(sotk){
         return (await this.api.delete(`/${sotk}`)).data;
     }
+    async layKT(){
+        return (await this.api.get("/khach")).data;
+    };
     
 }
 export default new khachhangService();

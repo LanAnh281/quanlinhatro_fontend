@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import admin from "@/views/admin.vue";
 const routes=[
+    
 //Thống kê điện nước
     {
         path:"/chartTK/:nam",
@@ -163,6 +164,12 @@ const routes=[
         path:"/user/doimatkhau",
         name:"userdoimatkhau",
         component:()=>import('../components/User/UserDoiMatKhau.vue'),          // props:true
+    },
+    // cá nhân
+    {
+        path:"/user/canhan",
+        name:"canhan",
+        component:()=>import('../components/User/user.vue'),          // props:true
     },
     
 

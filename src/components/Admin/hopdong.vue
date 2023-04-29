@@ -61,11 +61,21 @@ export default {
     async layDSHD() {
       this.hopdong = await hopdongService.layDSHD();
       var today = new Date();
-
+      today= 
+   
+      ("0" + (today.getMonth() + 1)).slice(-2);
+      var ngayhientai= new Date();
+      ngayhientai=  ngayhientai.getDate();
+      console.log(this.hopdong);
       this.hopdong = this.hopdong.filter((hd, index) => {
-        var datekt = new Date(hd.ngaykt);
-        return datekt >= today;
+        console.log(hd.thangkt == today)
+       if (hd.thangkt > today)
+        return hd.thangkt > today;
+      else if(hd.thangkt == today){
+          if(hd.ngaykt>=ngayhientai) return hd.ngaykthuc>=ngayhientai;
+        }
       });
+     
     },
     // async onDelete(mahd){
     //   this.$swal

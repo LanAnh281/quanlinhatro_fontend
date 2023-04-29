@@ -1,9 +1,16 @@
 <template>
+  <form method="post" action="http://localhost:3000/api/khachtro" enctype="multipart/form-data">
+    <div class="form-group">
+        <input type="file" name="anhcccd" class="input-group input-file"/>
+        <button type="submit" name="upload" class="btn btn-primary pull-right">Upload</button>
+    </div>
+  </form>
+
   <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Khách hàng'"></Header>
     <h3 class="text-center my-5">{{ tacvu.ten }}</h3>
-    <form @submit.prevent="save" class="pl-5">
+    <form method="post" action="http://localhost:3000/api/khachtro"  enctype="multipart/form-data">
       <div class="form-group row">
         <label for="hoten" class="col-sm-2 col-form-label">Họ tên</label>
         <div class="col-sm-10">
@@ -32,6 +39,20 @@
             id="cccd"
           />         
           <div class="invalid-feedback" v-if="errors.cccd">{{errors.cccd}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="anhcccd" class="col-sm-2 col-form-label">Ảnh CCCD</label>
+        <div class="col-sm-10">
+          <input
+          class="form-control"
+            id="anhcccd"
+            type="file"
+            name="anhcccd"
+            
+            @change="onImage"
+          />         {{ khachhang.anhCCCD }}
 
         </div>
       </div>
@@ -87,7 +108,7 @@
       </div>
       <label for="quequan" class="col-sm-2 col-form-label"></label>
 
-      <button class="btn btn-primary col-2" style="height: 40px">
+      <button   class="btn btn-primary col-2" style="height: 40px">
         {{ tacvu.submit }}
       </button>
     </form>
@@ -98,7 +119,7 @@ import Header from "./Header.vue";
 import Sidebar from "./sidebar.vue";
 
 import khachhangService from "@/services/khachhang.services";
-
+import test from '../../services/test.service';
 export default {
   name: "themkhachhang",
   components: { Header, Sidebar },
@@ -119,6 +140,7 @@ export default {
         hoten: "",
         nghenghiep: "",
         quequan: "",
+       
       },
       errors: {
         hoten: "",
@@ -141,6 +163,9 @@ export default {
     }
   },
   methods: {
+    async testupload(){
+      await test.testU();
+    },
     async layTK(sotk) {
       this.khachhang = await khachhangService.layKH(sotk);
     },
@@ -215,7 +240,13 @@ export default {
     isNumber(value) {
       return /^\d*$/.test(value);
     },
+    onImage(e){
+      const selectedFile = document.getElementById("anhcccd").files[0];
+      // console.log(selectedFile);
+      this.khachhang.anhcccd=selectedFile;
+    },
     async save() {
+      console.log("thêm");
       if (this.validate()) {
         if (this.$route.params.sotk) {
           this.thongbao = await khachhangService.chinhsuaKH(

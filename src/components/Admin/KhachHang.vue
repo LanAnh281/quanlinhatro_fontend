@@ -12,6 +12,7 @@
         <tr>
           <th>Họ tên</th>
           <th scope="col">CCCD</th>
+          <th scope="col"> Ảnh CCCD</th>
           <th scope="col">Nghề nghiệp</th>
           <th scope="col">Quê quán</th>
           <th scope="col">Thao tác</th>
@@ -21,18 +22,27 @@
         <tr :key="index" v-for="(kh, index) in khachhang">
           <td>{{ kh.hoten }}</td>
           <td class="text-left">{{ kh.cccd }}</td>
+          <td class="text-left">
+            <img :src="`http://localhost:3000/api/upload/${kh.anhCCCD}`" alt="">
+          </td>
           <td>{{ kh.nghenghiep }}</td>
           <td>{{ kh.quequan }}</td>
           <td>
-            <router-link :to="{
-              name: 'khachhang.chinhsua',
-              params: { sotk: kh.STT },
-            }">
+            <router-link
+              :to="{
+                name: 'khachhang.chinhsua',
+                params: { sotk: kh.STT },
+              }"
+            >
               <fa icon="edit"></fa>
             </router-link>
             &nbsp;
             <!-- <router-link :to="{ name: '' }"> -->
-            <fa icon="trash" class="mr-2 style trash" v-on:click="onDelete(kh.STT)"></fa>
+            <fa
+              icon="trash"
+              class="mr-2 style trash"
+              v-on:click="onDelete(kh.STT)"
+            ></fa>
             <!-- </router-link> -->
           </td>
         </tr>
@@ -41,16 +51,18 @@
   </div>
 </template>
 <script>
+import hopdongService from "../../services/hopdong.service";
 import Header from "./Header.vue";
 import Sidebar from "./sidebar.vue";
 
 import khachhangService from "@/services/khachhang.services";
+import phongService from "../../services/phong.service";
 export default {
   name: "KhachHang",
   components: { Header, Sidebar },
   data() {
     return {
-      dieuhuong:{khachhang:true},
+      dieuhuong: { khachhang: true },
 
       thongbao: { type: Object },
       khachhang: [],
@@ -62,6 +74,7 @@ export default {
   methods: {
     async getAll() {
       this.khachhang = await khachhangService.layDSKH();
+      
     },
     async onDelete(sotk) {
       this.$swal
@@ -76,7 +89,19 @@ export default {
           if (result.isConfirmed) {
             this.thongbao = await khachhangService.xoaKH(sotk);
             this.$swal.fire("Đã xóa!", "", "success");
+            let tkhoan={STT:sotk};
+            let mes = await hopdongService.chinhsuaHDKhach(tkhoan);
+            let hopdong=await hopdongService.layDSHD();
+            hopdong= await hopdong.filter((hd,index)=>{
+              return hd.STT==sotk;
+            })
+            // let hd={maphong:hopdong[hopdong.length-1].maphong}
+            // console.log(hd);
+            let ob = { trangthai: "0" };
+            await phongService.chinhsuaPhong(hopdong[hopdong.length-1].maphong, ob);
+            
             this.getAll();
+            return;
           }
         });
     },

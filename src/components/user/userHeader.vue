@@ -1,6 +1,6 @@
 <template>
-  <header class="col-12 row justify-content-between">
-    <nav class="col-8 mx-4 navbar navbar-expand-lg navbar-light">
+  <header class="col-12 m-0 row justify-content-between">
+    <nav class="col-8   navbar navbar-expand-lg navbar-light">
       <ul class="navbar-nav mr-auto text-center">
         <li class="nav-item">
           <img src="../../assets/img/logo.PNG" class="header_img" />
@@ -23,21 +23,21 @@
       </ul>
     </nav>
     <!--  -->
-    <nav class="col-2 navbar navbar-expand-lg navbar-light list">
+    <nav class="col-2 navbar text-left  navbar-expand-lg navbar-light list">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" style="width: 100px; padding-left: 50px">
           <fa icon="user" style="color: brown;"></fa>
           <fa icon="chevron-down" class="pl-2"></fa>
           <ul>
-            <li>
-              <router-link :to="{ name: '' }">Cá nhân</router-link>
+            <li class="pl-2">
+              <router-link :to="{ name: 'canhan' }">Cá nhân</router-link>
             </li>
-            <li>
+            <li class="pl-2">
               <router-link :to="{ name: 'userdoimatkhau' }">
                 Đổi mật khẩu
               </router-link>
             </li>
-            <li @click="logout">Đăng xuất</li>
+            <li @click="logout" class="pl-2">Đăng xuất</li>
           </ul>
         </li>
       </ul>
@@ -65,19 +65,21 @@ export default {
 };
 </script>
 <style scoped>
-:root {
-  --primary-color: #dcdcdc;
+a:hover{
+  background-color:transparent;
+  color: yellow;
 }
-.header,
-.footer {
-  width: 100%;
+a{
+  text-decoration: none;
+  color: #F1E9e9;;
 }
 header {
- background-color: transparent;
+ background-color:#f7f7f7;
 }
 li {
   line-height: 3;
 }
+
 
 .header_img {
   object-fit: cotain;

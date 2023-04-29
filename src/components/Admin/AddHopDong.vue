@@ -308,6 +308,9 @@ export default {
     },
     async tenphong(phong) {
       this.hopdong.maphong = phong.target.value;
+      let tenphong=await phongService.layPhong(this.hopdong.maphong);
+      // console.log("Tên phòng là:",tenphong);
+      // this.hopdong.tenphong=tenphong[0].tenphong;
     },
     async save() {
       if (this.validate) {
