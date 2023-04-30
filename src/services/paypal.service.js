@@ -7,8 +7,8 @@ class paypalService{
     async hienTT(){
         return (await this.api.get("/")).data;
     };
-    async taoTT(){
-        return (await this.api.post("/")).data;
+    async taoTT(data){
+        return (await this.api.post("/",data)).data;
     };
     
 }

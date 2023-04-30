@@ -78,9 +78,9 @@ export default {
       document.getElementById(`${id}`).focus();  
     },
     async save(){
-      console.log("chỉnh sửa");
+      
       let mes=await khachhangServices.chinhsuaKH(this.khachhang.STT, this.khachhang);
-      console.log("mes:",mes);
+     
     }
   },
 };

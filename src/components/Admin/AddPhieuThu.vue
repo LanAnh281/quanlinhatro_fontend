@@ -142,14 +142,10 @@ export default {
         this.hoadon.maphong,
         this.hoadon
       );
-      console.log("lấy tiêu thụ",laytieuthu);
-     
       this.hoadon["dienchisocu"] = laytieuthu[0].dienchisocu;
       this.hoadon["dienmoi"] = laytieuthu[0].dienchisomoi;
       this.hoadon["nuocchisocu"] = laytieuthu[0].nuocchisocu;
       this.hoadon["nuocmoi"] = laytieuthu[0].nuocchisomoi;
-
-
       this.chinhsuaHD();
       
     },

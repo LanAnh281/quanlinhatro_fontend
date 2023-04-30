@@ -10,6 +10,9 @@ class hoadonService{
     async layHD(mahd){
         return (await this.api.get(`/${mahd}`)).data;
     };
+    async layHDK(data){
+        return (await this.api.get('/hd/khach',data)).data;
+    };
     async xoaHD(mahd){
         return (await this.api.delete(`/${mahd}`)).data;
     };

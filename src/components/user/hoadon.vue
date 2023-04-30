@@ -21,7 +21,7 @@
                         <td>{{ hd.tongtien }}</td>
                         <td>
                           <!-- <fa :icon="['fab','trash']"></fa> -->
-                          <form @submit.prevent="thanhtoan">
+                          <form @submit.prevent="thanhtoan(hd.tongtien,hd.mahd)">
                             <button class="btn btn-primary">Thanh toán</button>
                         </form>
                         </td>
@@ -39,6 +39,7 @@ import hoadonServices from "../../services/hoadon.services";
 import paypalService from '../../services/paypal.service';
 import khachhangServices from "../../services/khachhang.services";
 import hopdongServices from '../../services/hopdong.service';
+import phieuthuService from '../../services/phieuthu.services';
 export default{
     name: "hoadon",
     components: { userHeader, userFooter },
@@ -51,30 +52,52 @@ export default{
     };
   },
   async created() {
-   await this.layHopDong();
-   await this.layHDK();
-
+    await this.layHDKH();
+    await this.dathanhtoan();
   },
   methods: {
+    
     async layKH (){
         this.khachhang= await khachhangServices.layKT();
     },
     async layHopDong(){
         this.hopdong= await hopdongServices.layHDK();
     },
-    async layHDK(){
-        this.hoadon= await hoadonServices.layHD(this.hopdong.maphong);
-        // this.hoadon= this.hoadon.filter((hd,index)=>{
-        //     return (hd.maphong===this.kh)
-        // })
+    async layHDKH(){
+        await this.layHopDong();
+        
+        let phong= {maphong:this.hopdong.maphong};
+        
+        this.hoadon= await hoadonServices.layDSHD();
+       
+        this.hoadon=this.hoadon.filter((hd,index)=>{
+          return (hd.maphong==this.hopdong.maphong && hd.trangthai=='chưa thanh toán');
+        })
+        
+
     },
-    async thanhtoan(){
-      // console.log('hi');
+    async thanhtoan(tongtien,mahd){
+      
       let a=await paypalService.hienTT()
-      console.log(a);
-     var url=await paypalService.taoTT();
-     console.log(url)
+      let thanhtoan={tongtien:tongtien, mahd:mahd}
+     var url=await paypalService.taoTT(thanhtoan);
+    //  console.log(url)
      window.location=url;
+    },
+    async dathanhtoan(){
+      if(this.$route.query.trangthai){
+        
+        console.log("Trạng thái:", this.$route.query.trangthai,"mã hd:",this.$route.query.mahd)
+        let tt= await phieuthuService.themPT(this.$route.query.mahd);
+        var hdon= await hoadonServices.layHD(this.$route.query.mahd);
+        hdon=hdon[0];
+        hdon['trangthai']="Đã thanh toán";
+        let mes = await hoadonServices.chinhsuaHD(this.$route.query.mahd,hdon);
+        await this.layHDKH();
+        return;
+      }
+      
+      
     }
    
   },
