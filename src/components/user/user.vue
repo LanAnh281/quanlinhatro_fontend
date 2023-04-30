@@ -1,50 +1,55 @@
 <template>
-
+  
   <div class="col-12">
     <userHeader></userHeader>
-    <div>
-      <h1>Thông tin khách hàng</h1>
-      <table class="table table-hover mt-2">
+    <div class="my-5">
+      <h1 class="text-center">Thông tin khách hàng</h1>
+      <table class="table table-hover mt-5">
       
           <tr>
             <th>Họ tên</th>
-            <th>{{khachhang.hoten}}</th>
             <td>
-                <fa icon="edit"></fa>
+              <input type="text" v-model="khachhang.hoten" id="hoten">
+
+            </td>
+            <td>
+              <fa icon="edit" @click="myfunction('hoten')"></fa>
             </td>
           </tr>
           <tr>
             <th >SĐT</th>
-            <th>{{khachhang.sdt}}</th>
             <td>
-                <fa icon="edit"></fa>
+              <input type="text" v-model="khachhang.sdt" id="sdt">
+            </td>
+            <td>
+                <fa icon="edit" @click="myfunction('sdt')"></fa>
             </td>
           </tr>
           <tr>
             <th >Quê quán</th>
-            <th>{{khachhang.quequan}}</th>
             <td>
-                <fa icon="edit"></fa>
+              <input type="text" v-model="khachhang.quequan" id="quequan">
+
+            </td>
+            <td>
+              <fa icon="edit" @click="myfunction('quequan')"></fa>
             </td>
           </tr>
          
           <tr>
             <th >Nghề nghiệp</th>
-            <th>{{khachhang.nghenghiep}}</th>
             <td>
-                <fa icon="edit"></fa>
+              <input type="text" v-model="khachhang.nghenghiep" id="nghenghiep">
+
+            </td>
+            <td>
+              <fa icon="edit" @click="myfunction('nghenghiep')"></fa>
             </td>
           </tr>
             
-            
-          <tr>
-            <th >Quê quán</th>
-            <th>{{khachhang.quequan}}</th>
-            <td>
-                <fa icon="edit"></fa>
-            </td>
-          </tr>
+          
       </table>
+      <button class="btn btn-primary float-right mr-5 mb-5" @click="save()" >Lưu</button>
     </div>
     <userFooter class="mt-5"></userFooter>
   </div>
@@ -68,7 +73,23 @@ export default {
   methods: {
     async layKH (){
         this.khachhang= await khachhangServices.layKT();
+    },
+    myfunction(id) {
+      document.getElementById(`${id}`).focus();  
+    },
+    async save(){
+      console.log("chỉnh sửa");
+      let mes=await khachhangServices.chinhsuaKH(this.khachhang.STT, this.khachhang);
+      console.log("mes:",mes);
     }
   },
 };
 </script>
+<style>
+th{
+  font-weight: bold;
+}
+input{
+  border: none;
+}
+</style>

@@ -171,6 +171,12 @@ const routes=[
         name:"canhan",
         component:()=>import('../components/User/user.vue'),          // props:true
     },
+    //hợp đồng thuê
+    {
+        path:"/user/hopdongthue",
+        name:"hopdongthue",
+        component:()=>import('../components/User/hopdongthue.vue'),          // props:true
+    },
     
 
 
