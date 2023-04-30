@@ -207,13 +207,7 @@ export default {
         async tenloai(loai){
             this.hoadon.maloai=loai.target.value;
             this.phong= await phongService.LayTTPTheoLoai(this.hoadon.maloai);
-            // this.phong.filter((p,index)=>{
-            //     console.log(index);
-            //     console.log("mp:",p.maphong, this.hoadon.maphong);
-            //     if(p.maphong==this.hoadon.maphong){
-            //         this.phong.splice(index,1);
-            //     }
-            // })
+           
             let gia= await loaiphongService.layLP(loai.target.value);
             this.hoadon.giaphong=gia.giaphong;
         },
@@ -223,15 +217,33 @@ export default {
             
     },  
     async layDN(maphong){
-        let dien= await ghidiennuocService.layDSDN(maphong);
-            if(dien.length==0){
+        if(this.$route.params.mahd){
+            let dien= await ghidiennuocService.layDN(maphong);
+            if(dien.length==1){
                 this.hoadon.dienchisocu=0;
                 this.hoadon.nuocchisocu=0;
+                this.hoadon.thoigianghi=dien[dien.length-1].thoigianghi;
+
             }
             else{
-                this.hoadon.dienchisocu=dien[dien.length-1].dienchisocu;
-                this.hoadon.nuocchisocu=dien[dien.length-1].nuocchisocu;
+                this.hoadon.dienchisocu=dien[dien.length-2].dienchisomoi;
+                this.hoadon.nuocchisocu=dien[dien.length-2].nuocchisomoi;
             }
+            this.hoadon.thoigianghi=dien[dien.length-1].thoigianghi;
+
+        }
+        else{
+            let dien= await ghidiennuocService.layDN(maphong);
+                if(dien.length==0){
+                    this.hoadon.dienchisocu=0;
+                    this.hoadon.nuocchisocu=0;
+                }
+                else{
+                    this.hoadon.dienchisocu=dien[dien.length-1].dienchisomoi;
+                    this.hoadon.nuocchisocu=dien[dien.length-1].nuocchisomoi;
+                }
+
+        }
     },
     dientieuthu(){
         this.hoadon.dientieuthu=this.hoadon.dienmoi-this.hoadon.dienchisocu;
@@ -243,22 +255,24 @@ export default {
         +this.hoadon.giaphong;
     },
     async save(){
+
         if(this.$route.params.mahd){
-            this.hoadon.trangthai='Chưa thanh toán';
+            
+
+            this.hoadon.trangthai='chưa thanh toán';
             let thongdiep=await ghidiennuocService.chinhsuaDN(this.hoadon);
             let hd= await hoadonService.chinhsuaHD(this.$route.params.mahd,this.hoadon);
 
-            console.log('chỉnh sửa hóa đơn', this.hoadon);
             if(hd.mes){
                 this.$swal.fire({
-                title: "Tạo thành công hóa đơn",
+                title: "Chỉnh sửa thành công hóa đơn",
                 confirmButtonText: "OK",
               });
             }
             return;
         }
         let mes= await ghidiennuocService.themDN(this.hoadon);
-        if(mes.mes=='Phòng này đã được ghi điện nước'){
+        if(mes.mes==='Phòng này đã được ghi điện nước'){
             this.$swal.fire({
             title: mes.mes,
             confirmButtonText: "OK",})

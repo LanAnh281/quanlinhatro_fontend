@@ -177,7 +177,12 @@ const routes=[
         name:"hopdongthue",
         component:()=>import('../components/User/hopdongthue.vue'),          // props:true
     },
-    
+    //Hóa đơn
+    {
+        path:"/user/hoadon",
+        name:"userhoadon",
+        component:()=>import('../components/User/hoadon.vue'),        
+    }
 
 
 ];

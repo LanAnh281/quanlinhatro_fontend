@@ -113,7 +113,7 @@ export default {
         this.hoadon[index].tenphong=phong[0].tenphong;
       
       })
-      
+      console.log(this.hoadon);
     },
    
     async onDelete(mahd) {

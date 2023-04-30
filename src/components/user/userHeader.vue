@@ -16,7 +16,7 @@
           </router-link>
         </li>
         <li class="nav-item ml-1">
-          <router-link :to="{ name: '' }" class="nav-link active text-center">
+          <router-link :to="{ name: 'userhoadon' }" class="nav-link active text-center">
             Hóa đơn
           </router-link>
         </li>

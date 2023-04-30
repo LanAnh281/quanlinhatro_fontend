@@ -86,13 +86,11 @@ export default {
     },
     async layHD(){
         this.hopdong= await hopdongService.layHDK()
-       console.log(this.hopdong.ngaylap);
     },
     async layPhong(){
         this.phong= await phongService.layPhong(this.hopdong.maphong);
         this.phong=this.phong[0];
         let loai= await loaiPhongService.layLP(this.phong.maloai);
-        console.log("loại", loai);
         this.phong['dientich']=loai.dientich;
         this.phong['giaphong']=loai.giaphong;
         this.phong['tenloai']=loai.tenloai;
