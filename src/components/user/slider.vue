@@ -1,11 +1,12 @@
 <template>
 
 <div class="col-12 py-3 my-2">
-  <h1 class=" text-center my-5">Chào mừng bạn đến nhà trọ {{ nhatro.tennhatro }} của tôi</h1>
+  <h1 class=" mt-3" style="color: #6C7ee1;">Chào mừng bạn đến với {{ nhatro.tennhatro }}</h1>
+  <h5 class="mb-5"> <i>Nơi biến ngôi nhà thành gia đình của bạn</i> </h5>
   <Carousel :autoplay="2000" :wrap-around="true" >
     <Slide v-for="(slide,index) in 3" :key="index">
       <div class="carousel__item"  >
-        <img :src="imageSrc(images[index].url)" style="width:1000px;height:550px;object-fit : cover;" />
+        <img :src="imageSrc(images[index].url)" style="width:900px;height:400px;object-fit : cotain;" />
       </div>
     </Slide>
 

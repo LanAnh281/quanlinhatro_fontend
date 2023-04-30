@@ -6,7 +6,7 @@
           <img src="../../assets/img/logo.PNG" class="header_img" />
         </li>
         <li class="nav-item ml-1">
-          <router-link :to="{ name: '' }" class="nav-link active text-center">
+          <router-link :to="{ name: 'user' }" class="nav-link active text-center">
             Trang chủ
           </router-link>
         </li>
@@ -31,6 +31,9 @@
           <ul>
             <li class="pl-2">
               <router-link :to="{ name: 'canhan' }">Cá nhân</router-link>
+            </li>
+            <li class="pl-2">
+              <router-link :to="{ name: 'giahan' }">Đăng ký gia hạn</router-link>
             </li>
             <li class="pl-2">
               <router-link :to="{ name: 'userdoimatkhau' }">

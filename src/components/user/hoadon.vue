@@ -87,7 +87,6 @@ export default{
     async dathanhtoan(){
       if(this.$route.query.trangthai){
         
-        console.log("Trạng thái:", this.$route.query.trangthai,"mã hd:",this.$route.query.mahd)
         let tt= await phieuthuService.themPT(this.$route.query.mahd);
         var hdon= await hoadonServices.layHD(this.$route.query.mahd);
         hdon=hdon[0];

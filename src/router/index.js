@@ -182,8 +182,13 @@ const routes=[
         path:"/user/hoadon",
         name:"userhoadon",
         component:()=>import('../components/User/hoadon.vue'),        
-    }
-
+    },
+    //Đăng ký gia hạn
+    {
+        path:"/user/giahan",
+        name:"giahan",
+        component:()=>import('../components/User/giahan.vue'),        
+    },
 
 ];
 
