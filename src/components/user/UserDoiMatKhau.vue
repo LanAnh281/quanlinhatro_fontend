@@ -1,6 +1,6 @@
 <template>
    <div class="col-12">
-    <userHeader></userHeader>
+    <userHeader :headerProps="dieuhuong" class="mb-3"></userHeader>
       <form @submit.prevent="checkLogin" class="background mt-5">
           <h1 class="text-center mt-5 mb-3">Đổi mật khẩu</h1>
        
@@ -62,20 +62,21 @@
         
         </form>
         <userFooter class="mt-5"></userFooter>
-    </div>
+      </div>
   </template>
   <script>
-   import taikhoanService from "../../services/taikhoan.service";
-   import userHeader from './userHeader.vue';
+  
+  import userHeader from './userHeader.vue';
   import userFooter from './userfooter.vue';
-
+  import taikhoanService from "../../services/taikhoan.service";
   
   export default {
     name: "userdoimatkhau",
-    components: {userHeader,userFooter },
+    components: { userHeader, userFooter },
   
     data() {
       return {
+        dieuhuong:{doimatkhau:true},
         errors: {
           matkhaumoi: "",
           matkhau: "",

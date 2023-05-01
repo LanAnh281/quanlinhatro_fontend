@@ -1,46 +1,67 @@
 <template>
-  <header class="col-12 m-0 row justify-content-between">
+ 
+  <header class="col-12 m-0 p-0 row justify-content-between">
     <nav class="col-8   navbar navbar-expand-lg navbar-light">
-      <ul class="navbar-nav mr-auto text-center">
+      <ul class="navbar-nav mr-auto text-center pl-1">
         <li class="nav-item">
           <img src="../../assets/img/logo.PNG" class="header_img" />
         </li>
-        <li class="nav-item ml-1">
-          <router-link :to="{ name: 'user' }" class="nav-link active text-center">
+        <li class="nav-item ml-1 navitem ">
+          <router-link :to="{ name: 'user' }" 
+          :class="{active : headerProps.trangchu}"
+          style="color:brown" 
+          class="nav-link navitem text-center">
             Trang chủ
           </router-link>
         </li>
         <li class="nav-item ml-1">
-          <router-link :to="{ name: 'hopdongthue' }" class="nav-link active text-center">
+          <router-link :to="{ name: 'hopdongthue' }"
+          :class="{active : headerProps.hopdong}" 
+           style="color:brown" 
+           class="nav-link navitem text-center">
             Hợp đồng
           </router-link>
         </li>
         <li class="nav-item ml-1">
-          <router-link :to="{ name: 'userhoadon' }" class="nav-link active text-center">
+          <router-link :to="{ name: 'userhoadon' }" 
+          :class="{active: headerProps.hoadon}"
+          style="color:brown" 
+          class="nav-link navitem text-center">
             Hóa đơn
           </router-link>
         </li>
       </ul>
     </nav>
     <!--  -->
-    <nav class="col-2 navbar text-left  navbar-expand-lg navbar-light list">
+    <nav class="col-2 navbar text-left justify-items-end p-0 pl-5  navbar-expand-lg navbar-light list">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" style="width: 100px; padding-left: 50px">
+        <li class="nav-item " style="width: 100px; padding-left: 50px">
           <fa icon="user" style="color: brown;"></fa>
+          
           <fa icon="chevron-down" class="pl-2"></fa>
-          <ul>
-            <li class="pl-2">
-              <router-link :to="{ name: 'canhan' }">Cá nhân</router-link>
-            </li>
-            <li class="pl-2">
-              <router-link :to="{ name: 'giahan' }">Đăng ký gia hạn</router-link>
-            </li>
-            <li class="pl-2">
-              <router-link :to="{ name: 'userdoimatkhau' }">
-                Đổi mật khẩu
+          <ul >
+            <li>
+              <router-link :to="{ name: 'canhan' }">
+                <span  class="mx-2" style="display:block">Cá nhân</span>
+                
               </router-link>
             </li>
-            <li @click="logout" class="pl-2">Đăng xuất</li>
+            <li>
+              <router-link :to="{ name: 'giahan' }">
+                <span  class="ml-2" style="display:block">Đăng ký gia hạn</span>
+              </router-link>
+            </li>
+            <li >
+              <router-link :to="{ name: 'userdoimatkhau' }">
+                <span  class="mx-2" style="display:block">Đổi mật khẩu</span>
+              </router-link>
+            </li>
+            <li @click="logout" class="logout" >
+              <router-link :to="{ name: ''}" >
+                <span class="mx-2" style="display:block">Đăng xuất</span>
+              </router-link>
+
+            </li>
           </ul>
         </li>
       </ul>
@@ -48,11 +69,20 @@
   </header>
 </template>
 <script>
+import hopdongService from '../../services/hopdong.service';
+
 export default {
   name: "userHeader",
+  props:['headerProps'],
   data() {
-    return {};
+    return {
+      hopdong:{type:Array},
+    };
   },
+  async created(){
+      await this.layHD(); 
+    },
+
   methods: {
     delete_cookie(name) {
       document.cookie =
@@ -64,13 +94,30 @@ export default {
         "token" + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
       this.$router.push({ name: "login" });
     },
+    async layHD(){
+      this.hopdong=await hopdongService.layHDK();
+
+    }
   },
 };
 </script>
 <style scoped>
+
+
+.logout:hover a{
+  color: red;
+}
+
 a:hover{
-  background-color:transparent;
+  background-image: linear-gradient(
+    to right,
+    rgb(243, 167, 180),
+    rgb(133, 43, 235),
+    rgb(182, 32, 182)
+  ) ;
   color: yellow;
+  display: block;
+  width: calc(100%);
 }
 a{
   text-decoration: none;
@@ -92,14 +139,10 @@ li {
 li {
   transition: 1s all;
   color: #fff;
-  border-radius: 18px;
+  
 }
 
 li:hover {
-  transition: 1s all;
-  color: #fc2fbb;
-  border-top-right-radius: 10px 10px;
-  border-bottom-right-radius: 10px 10px;
   cursor: pointer;
 }
 
@@ -107,9 +150,9 @@ li ul {
   top: 100;
   left: -64px;
   width: 154px;
-  background: #1e2b32;
-  display: none;
+  background: #1e2b32; 
   position: absolute;
+  display: none;
 }
 li:hover > ul {
   display: block;
@@ -127,5 +170,23 @@ ul {
 }
 .navbar {
   width: 100%;
+}
+.active{
+  font-weight: bold;
+  font-size: large;
+}
+.navitem{
+  font-size:20px;
+  
+}
+
+.navitem:hover {
+  transition: 1s all;
+  transform: scale(1.1); /* Equal to scaleX(0.7) scaleY(0.7) */
+  color:rgb(204, 13, 45) !important;
+  font-weight: bold;
+  background-color: transparent;
+  background-image: none;
+
 }
 </style>

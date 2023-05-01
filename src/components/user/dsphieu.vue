@@ -1,6 +1,6 @@
 <template>
     <div class="col-12">
-        <userHeader></userHeader>
+        <userHeader :headerProps="dieuhuong"></userHeader>
         <h1 class="my-3 text-center">Danh sách phiếu gia hạn </h1>
     <table class="table table-hover my-5">
         <thead>
@@ -68,9 +68,8 @@ export default {
           confirmButtonText: "OK",
         })
         .then(async (result) => {
-        var mes= await phieugiahanService.xoaphieugh(maphieu);
-        console.log("xóa phiếu gia hạn",mes);
           if (result.isConfirmed) {
+            var mes= await phieugiahanService.xoaphieugh(maphieu);
               this.$swal.fire("Đã xóa!", "", "success");
             }
         }
@@ -93,6 +92,7 @@ input .btn{
   border-radius: 15px;
 }
 
+
 .info {
   background-color: rgb(93, 42, 245);
 }
@@ -100,4 +100,5 @@ input .btn{
 .trash {
   color: red;
 }
+
 </style>

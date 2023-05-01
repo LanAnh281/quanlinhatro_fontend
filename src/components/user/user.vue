@@ -1,7 +1,7 @@
 <template>
   
   <div class="col-12">
-    <userHeader></userHeader>
+    <userHeader :headerProps="dieuhuong" class="mb-3"></userHeader>
     <div class="my-5">
       <h1 class="text-center">Thông tin khách hàng</h1>
       <table class="table table-hover mt-5">
@@ -47,7 +47,7 @@
             </td>
           </tr>
       </table>
-      <button class="btn btn-primary float-right mr-5 mb-5" @click="save()" >Lưu</button>
+      <button class="btn btn-primary float-right mx-5 mb-5" @click="save()" >Lưu</button>
     </div>
     <userFooter class="mt-5"></userFooter>
   </div>
@@ -62,6 +62,7 @@ export default {
 
   data() {
     return {
+      dieuhuong:{canhan:true},
       khachhang: {type: Object},
     };
   },
@@ -76,8 +77,21 @@ export default {
       document.getElementById(`${id}`).focus();  
     },
     async save(){
+      this.$swal
+        .fire({
+          title: "Bạn có muốn lưu ?",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "OK",
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            let mes=await khachhangServices.chinhsuaKH(this.khachhang.STT, this.khachhang);
+              this.$swal.fire("Đã lưu", "", "success");
+            }
+        }
+        );
       
-      let mes=await khachhangServices.chinhsuaKH(this.khachhang.STT, this.khachhang);
      
     }
   },

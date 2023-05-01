@@ -1,6 +1,6 @@
 <template>
     <div class="col-12">
-        <userHeader class="mb-3"></userHeader>
+      <userHeader :headerProps="dieuhuong" class="mb-3"></userHeader>
         <Router-link :to="{ name: 'dsphieu' }" class="my-3" >
           <button class="btn btn-primary ">Danh sách phiếu gia hạn</button>
         </Router-link>
@@ -79,7 +79,7 @@ export default{
 
   data() {
     return {
-    
+      dieuhuong:{giahan:true},
       hopdong:{type:Object},
       errors:{
         ngaybdgh:'',

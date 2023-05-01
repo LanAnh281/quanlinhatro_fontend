@@ -1,7 +1,7 @@
 <template>
         <div class="col-12">
-            <userHeader></userHeader>
-            <div class="text-center my-5 pb-5">
+          <userHeader :headerProps="dieuhuong" class="mb-3"></userHeader>
+          <div class="text-center my-5 pb-5">
                 <h1 class="mb-5">Hóa đơn của bạn</h1>
                 <table class="table table-hover mt-2">
                     <thead>
@@ -46,6 +46,7 @@ export default{
 
   data() {
     return {
+      dieuhuong:{hoadon:true},
       hoadon: {type: Object},
       khachhang:{type:Object},
       hopdong:{type:Object}
@@ -103,3 +104,6 @@ export default{
 
 }
 </script>
+<style scoped>
+
+</style>

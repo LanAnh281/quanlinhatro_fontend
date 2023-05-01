@@ -1,6 +1,6 @@
 <template>
         <div class="col-12">
-          <userHeader></userHeader>
+          <userHeader :headerProps="dieuhuong" class="mb-3"></userHeader>
           <slider class="col-12"></slider>
           <trangChu></trangChu>
           <userFooter class="mt-5"></userFooter>
@@ -20,6 +20,7 @@
     components: {userHeader,slider,userFooter,trangChu},
     data(){
       return{
+        dieuhuong:{trangchu:true},
         quyen:{
           message:'',
         }

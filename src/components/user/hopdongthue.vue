@@ -1,6 +1,6 @@
 <template>
   <div class="col-12">
-    <userHeader class="mb-3"></userHeader>
+    <userHeader :headerProps="dieuhuong" class="mb-3"></userHeader>
 
       <Router-link :to="{ name: 'giahan' }" class="my-3" >
         <button class="btn btn-primary ">Tạo phiếu gia hạn</button>
@@ -91,6 +91,8 @@ export default {
 
   data() {
     return {
+      dieuhuong:{hopdong:true},
+
       khachhang: { type: Object },
       nhatro: { type: Object },
       hopdong: { type: Object },
