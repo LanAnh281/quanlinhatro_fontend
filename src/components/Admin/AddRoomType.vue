@@ -167,29 +167,34 @@ export default {
       }
       
       else if (this.validate()) {
+
         // console.log(this.roomtype);
         if (this.$route.params.maloai) {
-          await loaiphongService
-            .capNhatLP(this.$route.params.maloai, this.roomtype)
-            .then((res) => {
-              this.$swal.fire({
-                title: "Cập nhật thành công loại phòng",
-                confirmButtonText: "OK",
-              });
-              // this.$router.push({ name: "admin" });
-              return;
-            });
-            return;
-        } else {
-          await loaiphongService.themLP(this.roomtype).then((res) => {
-            this.$swal.fire({
-                title: "Thêm thành công loại phòng mới",
-                confirmButtonText: "OK",
-              });
-            // this.$router.push({ name: "admin" });
-            return;
-          });
+          this.$swal
+        .fire({
+          title: "Bạn có cập nhật loại phòng ?",
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "OK",
+        })
+        .then(async (result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            await loaiphongService
+            .capNhatLP(this.$route.params.maloai, this.roomtype);
+              this.$swal.fire("Đã cập nhật!", "", "success");
+            
+          }
+        });
         }
+         else {
+            await loaiphongService.themLP(this.roomtype)
+            .then((res) => {
+              this.$swal.fire("Đã thêm!", "", "success");
+            })
+          }
+        
+        
       }
     },
     async getRoomType(lpID) {

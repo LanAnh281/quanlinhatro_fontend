@@ -90,7 +90,7 @@ export default {
               mes == "Phòng trọ của loại phòng bạn muốn xóa vẫn còn người ở"
             ) {
               this.$swal.fire({
-                title: "Loại phòng này vẫn còn người thuê",
+                title: "Loại phòng này vẫn còn người thuê,bạn không thể xóa",
                 showDenyButton: false,
                 confirmButtonText: "OK",
               });

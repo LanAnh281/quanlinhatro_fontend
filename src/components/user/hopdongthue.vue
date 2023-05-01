@@ -103,7 +103,7 @@ export default {
     await this.layKH();
     await this.layTTNT();
     await this.layHD();
-    this.layPhong();
+    await  this.layPhong();
   },
   methods: {
     async layKH() {
@@ -115,6 +115,7 @@ export default {
     },
     async layHD() {
       this.hopdong = await hopdongService.layHDK();
+      console.log(this.hopdong);
     },
     async layPhong() {
       this.phong = await phongService.layPhong(this.hopdong.maphong);

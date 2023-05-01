@@ -66,13 +66,14 @@ export default {
       ("0" + (today.getMonth() + 1)).slice(-2);
       var ngayhientai= new Date();
       ngayhientai=  ngayhientai.getDate();
-      console.log(this.hopdong);
       this.hopdong = this.hopdong.filter((hd, index) => {
-        // console.log(hd.thangkt == today)
+        // console.log(hd.thangkt,today,hd.thangkt>today);
        if (hd.thangkt > today)
         return hd.thangkt > today;
       else if(hd.thangkt == today){
-          if(hd.ngaykt>=ngayhientai) return hd.ngaykthuc>=ngayhientai;
+        // console.log(hd.ngaykthuc ,":",ngayhientai,hd.ngaykt>=ngayhientai);
+
+          if(hd.ngaykthuc >=ngayhientai) return hd.ngaykthuc>=ngayhientai;
         }
       });
      

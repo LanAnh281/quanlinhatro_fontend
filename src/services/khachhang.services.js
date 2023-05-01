@@ -11,10 +11,13 @@ class khachhangService{
         return (await this.api.post("/",data)).data;
     };
     async layKH(sotk){
-        return (await this.api.get(`${sotk}`)).data;
+        return (await this.api.get(`/${sotk}`)).data;
     }
     async chinhsuaKH(sotk,data){
-        return (await this.api.put(`${sotk}`,data)).data;
+        return (await this.api.put(`/${sotk}`,data)).data;
+    }
+    async chinhsuaKHKhongAnh(sotk,data){
+        return (await this.api.put(`/khonganh/${sotk}`,data)).data;
     }
     async xoaKH(sotk){
         return (await this.api.delete(`/${sotk}`)).data;

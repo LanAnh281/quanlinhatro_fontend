@@ -28,28 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group row">
-        <div class="col-sm-2 pr-0">
-          <label for="hoten" class="col-form-label" style="width: 120px"
-            >Họ tên</label
-          >
-          <span>:</span>
-        </div>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            
-            v-model="hopdong.hoten"
-            @blur="validate"
-            :class="{ 'is-invalid': errors.hoten }"
-            id="hoten"
-          />
-          <div :class="{ 'invalid-feedback': errors.hoten }">
-            {{ errors.hoten }}
-          </div>
-        </div>
-      </div>
+      
       <div class="form-group row">
         <div class="col-sm-2 pr-0">
           <label for="tenloai" class="col-form-label" style="width: 120px"
@@ -249,20 +228,28 @@ export default {
         matk: "",
         maphong: "",
         maloai: "",
-        hoten: "",
+        
       };
       if (!this.hopdong.matk) {
         this.errors.matk = "Mã tài khoản không được bỏ trống";
         isvalid = false;
       } else if (this.hopdong.matk) {
-        let tk = await khachhangService.layKH(this.hopdong.matk.slice(-2));
-        if (tk.length == 0) this.errors.matk = "Mã tài khoản không tồn tại";
+        if(this.hopdong.matk.length==3){
+          let tk = await khachhangService.layKH(this.hopdong.matk.slice(-1));
+          if (JSON.stringify(tk) === '{}') this.errors.matk = "Mã tài khoản không tồn tại";
         isvalid = false;
+        }
+        else if(this.hopdong.matk.length==4){
+          let tk = await khachhangService.layKH(this.hopdong.matk.slice(-2));
+          if (JSON.stringify(tk) === '{}') this.errors.matk = "Mã tài khoản không tồn tại";
+          isvalid = false;
+        }
+        else {
+          this.errors.matk = "Mã tài khoản không tồn tại";
+          isvalid = false;
+        } 
       }
-      if (!this.hopdong.hoten) {
-        this.errors.hoten = "Họ tên không được bỏ trống";
-        isvalid = false;
-      }
+      
       if (!this.hopdong.maloai) {
         this.errors.maloai = "Tên loại không được bỏ trống";
         isvalid = false;
