@@ -5,20 +5,20 @@
         <h3 class="text-center my-5">
             {{ tacvu.name }}
         </h3>
-        <div>
-            <h4>Giá điện: {{hoadon.giadien}}  VND</h4>
-            <h4>Giá nước: {{hoadon.gianuoc}} VND </h4>
+        <div class="px-3 mx-4 mb-3">
+            <h5>Giá điện: {{hoadon.giadien}}  VND</h5>
+            <h5>Giá nước: {{hoadon.gianuoc}} VND </h5>
           
         </div>
         <form @submit.prevent="save" class="pl-5">
             <div class="form-group row">
-                <div class="col-sm-2 pr-0">
-                  <label for="tenloai" class="col-form-label" style="width: 120px"
+                <div class="col-sm-3 pr-0">
+                  <label for="tenloai" class="col-form-label" style="width: 130px"
                     >Tên loại </label
                   >
                   <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                   <select id="tenloai" class="form-control" @change="tenloai">
                     <option :value="loaiphong.maloai"  selected>---{{loaiphong.tenloai}}--- </option>
                     <option
@@ -32,13 +32,13 @@
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2 pr-0">
-                  <label for="tenphong" class="col-form-label" style="width: 120px"
+                <div class="col-sm-3 pr-0">
+                  <label for="tenphong" class="col-form-label" style="width: 130px"
                     >Tên phòng </label
                   >
                   <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                   <select id="tenphong" class="form-control" @change="tenphong">
                     <option :value="phong.maphong"  selected>---{{phong.tenphong}}---  </option>
                     <option
@@ -54,11 +54,11 @@
               
               
             <div class="form-group row">
-                <div class="col-sm-2 pr-0">
-                    <label for="giaphong" class="col-form-label" style="width: 120px">Giá phòng</label>
+                <div class="col-sm-3 pr-0">
+                    <label for="giaphong" class="col-form-label" style="width: 130px">Giá phòng</label>
                     <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="text" class="form-control" 
                     id="giaphong"
                     disabled
@@ -69,11 +69,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2 pr-0">
-                    <label for="dienmoi" class="col-form-label" style="width: 120px">Chỉ số điện mới</label>
+                <div class="col-sm-3 pr-0">
+                    <label for="dienmoi" class="col-form-label" style="width: 130px">Chỉ số điện mới</label>
                     <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" @change="dientieuthu" 
                     class="form-control" 
                     v-model="hoadon.dienmoi"
@@ -84,12 +84,12 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2 pr-0">
+                <div class="col-sm-3 pr-0">
                     <label for="nuocmoi" class="col-form-label" 
-                    style="width: 120px">Chỉ số nước mới</label>
+                    style="width: 130px">Chỉ số nước mới</label>
                     <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" @change="nuoctieuthu"
                     class="form-control" 
                     v-model="hoadon.nuocmoi"
@@ -100,12 +100,12 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2 pr-0">
+                <div class="col-sm-3 pr-0">
                     <label for="dientieuthu" class="col-form-label" 
-                    style="width: 120px">Điện tiêu thụ</label>
+                    style="width: 130px">Điện tiêu thụ</label>
                     <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" 
                     class="form-control" 
                     disabled
@@ -118,12 +118,12 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2 pr-0">
+                <div class="col-sm-3 pr-0">
                     <label for="nuoctieuthu" class="col-form-label" 
-                    style="width: 120px">Nước tiêu thụ</label>
+                    style="width: 130px">Nước tiêu thụ</label>
                     <span>:</span>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <input type="number" 
                     class="form-control" 
                     disabled
@@ -136,7 +136,7 @@
             </div>
             <!-- Button -->
             <div class="my-2">
-                <label for="tenloai" class="col-sm-2 col-form-label"></label>
+                <label for="tenloai" class="col-sm-3 col-form-label"></label>
                 <button class="btn btn-primary col-2" style="height: 40px">{{ tacvu.submit }}</button>
             </div>
         </form>

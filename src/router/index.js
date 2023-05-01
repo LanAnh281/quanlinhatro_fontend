@@ -189,6 +189,12 @@ const routes=[
         name:"giahan",
         component:()=>import('../components/User/giahan.vue'),        
     },
+    //danh sách phiếu gia hạn
+    {
+        path:"/user/dsphieu",
+        name:"dsphieu",
+        component:()=>import('../components/User/dsphieu.vue'),        
+    },
 
 ];
 

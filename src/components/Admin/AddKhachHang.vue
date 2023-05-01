@@ -1,10 +1,5 @@
 <template>
-  <form method="post" action="http://localhost:3000/api/khachtro" enctype="multipart/form-data">
-    <div class="form-group">
-        <input type="file" name="anhcccd" class="input-group input-file"/>
-        <button type="submit" name="upload" class="btn btn-primary pull-right">Upload</button>
-    </div>
-  </form>
+ 
 
   <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">

@@ -124,6 +124,7 @@
             type="date"
             class="form-control"
             id="ngaybd"
+            :min="ngayhientai"
             v-model="hopdong.ngaybd"
             @blur="validate"
             :class="{ 'is-invalid': errors.ngaybd }"
@@ -145,6 +146,8 @@
             type="date"
             class="form-control"
             id="ngaykt"
+            :min="ngayhientai"
+
             v-model="hopdong.ngaykt"
             @blur="validate"
             :class="{ 'is-invalid': errors.ngaykt }"
@@ -178,7 +181,7 @@ export default {
   data() {
     return {
       dieuhuong:{hopdong:true},
-
+      ngayhientai:'',
       tacvu:{ten:'',submit:''},
       loaiphong: [],
       phong: [],
@@ -202,8 +205,9 @@ export default {
       "-" +
       ("0" + (today.getMonth() + 1)).slice(-2) +
       "-" +
-      today.getDate();
-    this.hopdong.ngaybd = date;
+      ("0" + (today.getDate())).slice(-2);
+    this.ngayhientai=date;
+    this.hopdong.ngaybd = this.ngayhientai;
     if(this.$route.params.mahd){
       this.tacvu={ten:'Chỉnh sửa hợp đồng',submit:'Cập nhật'};
     }else{
@@ -267,31 +271,29 @@ export default {
         this.errors.tenphong = "Tên phòng không được bỏ trống";
         isvalid = false;
       }
-      if (!this.hopdong.ngaybd) {
-        this.errors.ngaybd = "Ngày bắt đầu không được bỏ trống";
-        isvalid = false;
-      } else if (this.hopdong.ngaybd) {
-        var today = new Date();
-        var date =
-          today.getFullYear() +
-          "-" +
-          ("0" + (today.getMonth() + 1)).slice(-2) +
-          "-" +
-          today.getDate();
-        if (date > this.hopdong.ngaybd) {
-          this.errors.ngaybd = "Ngày bắt đầu thuê bạn chọn là ngày quá khứ";
-        }
-        isvalid = false;
-      }
-      if (!this.hopdong.ngaykt) {
-        this.errors.ngaykt = "Ngày kết thúc không được bỏ trống";
-        isvalid = false;
-      } else if (this.hopdong.ngaykt) {
+      // if (!this.hopdong.ngaybd) {
+      //   this.errors.ngaybd = "Ngày bắt đầu không được bỏ trống";
+      //   isvalid = false;
+      // } else if (this.hopdong.ngaybd) {
+      //   var today = new Date();
+      //   var date =
+      //     today.getFullYear() +
+      //     "-" +
+      //     ("0" + (today.getMonth() + 1)).slice(-2) +
+      //     "-" +
+      //     today.getDate();
+      //   if (date > this.hopdong.ngaybd) {
+      //     this.errors.ngaybd = "Ngày bắt đầu thuê bạn chọn là ngày quá khứ";
+      //   }
+      //   isvalid = false;
+      // }
+      
         if (this.hopdong.ngaykt < this.hopdong.ngaybd) {
           this.errors.ngaykt = "Ngày kết thúc thuê nhỏ hơn ngày bắt đầu thuê";
+          isvalid = false;
         }
-        isvalid = false;
-      }
+       
+      
       return isvalid;
     },
 

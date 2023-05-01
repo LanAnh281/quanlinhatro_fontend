@@ -68,7 +68,7 @@ export default {
       ngayhientai=  ngayhientai.getDate();
       console.log(this.hopdong);
       this.hopdong = this.hopdong.filter((hd, index) => {
-        console.log(hd.thangkt == today)
+        // console.log(hd.thangkt == today)
        if (hd.thangkt > today)
         return hd.thangkt > today;
       else if(hd.thangkt == today){

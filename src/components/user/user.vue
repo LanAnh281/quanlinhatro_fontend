@@ -46,8 +46,6 @@
               <fa icon="edit" @click="myfunction('nghenghiep')"></fa>
             </td>
           </tr>
-            
-          
       </table>
       <button class="btn btn-primary float-right mr-5 mb-5" @click="save()" >Lưu</button>
     </div>

@@ -2,7 +2,7 @@
     <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
   <div class="col-10 px-2">
     <Header :silderProps="'Thống kê điện nước'"></Header>
-    <h3 class="my-5 text-center">Thống Kê Điện Nước Tiêu Thụ 2 Tháng</h3>
+    <h3 class="my-5 text-center">Thống Kê Điện Nước Tiêu Thụ 3 Tháng</h3>
     <Bar :data="chartData" />
     </div>
   </template>
