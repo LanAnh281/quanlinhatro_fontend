@@ -51,7 +51,7 @@ import ghidiennuoc from '../../services/ghidiennuoc.services';
     methods:{
       async layTKDN (){
         this.diennuoc= await ghidiennuoc.thongkeDN('2023');
-        console.log(this.diennuoc);
+        // console.log(this.diennuoc);
       },
       
 

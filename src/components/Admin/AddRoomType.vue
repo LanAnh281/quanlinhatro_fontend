@@ -153,7 +153,7 @@ export default {
       if (!this.roomtype.giaphong) {
         
         this.errors.giaphong = "Giá phòng không được trống";
-        console.log(this.errors.giaphong);
+        // console.log(this.errors.giaphong);
         isvalid = false;
       }
       return isvalid;

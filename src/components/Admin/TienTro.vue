@@ -2,9 +2,9 @@
     <Sidebar class="col-2 px-0" :dieuhuongProps="dieuhuong"></Sidebar>
     <div class="col-10 px-2">
       <Header :silderProps="'Thống kê tiền trọ'"></Header>
-      <h3 class="text-center mt-3 mb-3">Thông kê Tiền Trọ</h3>
+      <h4 class="text-center mt-3 mb-4">Thông kê số lượng khách trọ đã thanh toán tiền trọ và chưa thanh toán tiền trọ</h4>
       <div class="row ">
-        <Bar :data="chartData"  class="col-12"/>
+        <Bar :data="chartData"  class="col-12" />
         
       </div>
       
@@ -40,10 +40,13 @@
         await this.layhoadon();
         this.chartData=  {
              labels: ['Đã thanh toán','chưa thanh toán'],
+             maintainAspectRatio:false,
              datasets:[
                {
-                 label: 'số lượng',
+                 label: 'số lượng người',
                  backgroundColor: '#5c1ad9',
+              
+                 
                  data: [this.dathanhtoan.length,this.chuathanhtoan.length]
                },
                
@@ -55,8 +58,8 @@
             let hoadon= await hoadonServices.layDSHD();
             this.dathanhtoan= hoadon.filter((hd)=>hd.trangthai==='Đã thanh toán');
             this.chuathanhtoan=hoadon.filter((hd)=>hd.trangthai==='chưa thanh toán');
-            console.log("Đã thanh toán", this.dathanhtoan);
-            console.log("chưa thanh toán", this.chuathanhtoan);
+            // console.log("Đã thanh toán", this.dathanhtoan);
+            // console.log("chưa thanh toán", this.chuathanhtoan);
         }
     }
       

@@ -6,7 +6,7 @@
         </Router-link>
         <div class="mt-5">
             <h1 class="text-center mb-4">Đăng ký gia hạn </h1>
-            <form class="pl-5">
+            <form class="pl-5" @submit.prevent="save">
                 <div class="form-group row justify-content-evently ml-5 pl-5">
                   <div class="col-sm-3  pl-5 ml-5">
                     <label for="ngaybd" class="col-form-label" style="width: 120px"
@@ -58,7 +58,7 @@
                       
                     </div>
                     <div class="col-sm-5 mx-0 px-0">
-                        <button class="btn btn-primary" @click="save">Gửi</button>
+                        <button class="btn btn-primary" >Gửi</button>
                     </div>
                 </div>
 
@@ -110,10 +110,14 @@ export default{
 
     },
     async save(){
-      console.log(this.giahan);
+      // console.log(this.giahan);
       if(this.validate){
-        var mes=await phieugiahanService.themPhieu(this.giahan);
-       
+        console.log("thêm phiếu gia hạn khách")
+        await phieugiahanService.themPhieu(this.giahan)
+        .then((res) => {
+              this.$swal.fire("Đã gửi!", "", "success");
+        })
+
       }
     } 
 

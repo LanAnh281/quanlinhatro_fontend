@@ -60,9 +60,9 @@ export default {
     async thanhtoan(){
       // console.log('hi');
       let a=await paypalService.hienTT()
-      console.log(a);
+      // console.log(a);
      var url=await paypalService.taoTT();
-     console.log(url)
+    //  console.log(url)
      window.location=url;
     }
   },

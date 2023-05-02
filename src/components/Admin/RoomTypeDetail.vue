@@ -82,22 +82,22 @@ export default {
       }
     },
     async toggle(maphong,tt,maloai) {
-        console.log(maphong);
+        // console.log(maphong);
         let ob={trangthai:''} ;
         if(tt=='Đã thuê'){
             let ob={trangthai:'0'} ;
             await phongService.chinhsuaPhong(maphong,ob);
             this.layDSP(this.$route.params.maloai);
-            console.log('đã thuê->đã thuê')
+            // console.log('đã thuê->đã thuê')
 
         }
         else {
             let ob={trangthai:'1'} ;
-            console.log(ob);
+            // console.log(ob);
             phongService.chinhsuaPhong(maphong,ob);
             this.layDSP(this.$route.params.maloai);
 
-            console.log('chưa thuê->đã thuê')
+            // console.log('chưa thuê->đã thuê')
 
         }
     },

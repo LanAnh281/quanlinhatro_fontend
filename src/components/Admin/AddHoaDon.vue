@@ -165,6 +165,11 @@ export default {
             phong:[],
             hoadon: { type: Object },
             tacvu: { name: '', submit: '' },
+            errors:{
+                solan:0,
+                nuocmoi:'',
+                dienmoi:'',
+            }
         }
     },
     async created() {

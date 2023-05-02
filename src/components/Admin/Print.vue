@@ -33,7 +33,7 @@ export default{
     async created(){
         await this.layTK();
         
-        console.log(this.khachhang);
+        // console.log(this.khachhang);
         window.print();
     },
     methods:{

@@ -11,14 +11,13 @@
             type="text"
             name="hoten"
             v-model="khachhang.hoten"
-            v-bind:class="{ 'is-invalid': errors.hoten }"
-            @blur="validate()"
+            v-bind:class="{ 'is-invalid': errors.hoten && errors.solan >0  }"
+            @blur="errors.solan>0 ? validate() :null"
             class="form-control"
             id="hoten"
           />
-          <div class="invalid-feedback" v-if="errors.hoten">
-            {{ errors.hoten }}
-          </div>
+          <div class="invalid-feedback" v-if="errors.hoten && errors.solan >0">{{ errors.hoten }}</div>
+
         </div>
       </div>
       <div class="form-group row">
@@ -28,27 +27,31 @@
             type="text"
             name="cccd"
             v-model="khachhang.cccd"
-            v-bind:class="{ 'is-invalid': errors.cccd }"
-            @blur="validate()"
+            v-bind:class="{ 'is-invalid': errors.cccd && errors.solan >0  }"
+            @blur="errors.solan>0 ? validate() :null"
             class="form-control"
             id="cccd"
           />
-          <div class="invalid-feedback" v-if="errors.cccd">
-            {{ errors.cccd }}
-          </div>
+          <div class="invalid-feedback" v-if="errors.cccd && errors.solan >0">{{ errors.cccd }}</div>
+
         </div>
       </div>
       <div class="form-group row">
         <label for="anhcccd" class="col-sm-2 col-form-label">Ảnh CCCD</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10" >
           <input
             class="form-control"
+            v-bind:class="{ 'is-invalid': errors.anh && errors.solan >0  }"
+            @blur="errors.solan>0 ? validate() :null"
             id="anhcccd"
             type="file"
             name="anhcccd"
             ref="file"
             @change="handleFileUpload($event)"
+
           />
+          <!-- <div v-if="errors.anh" style="color: #dc3545">{{ errors.anh }}</div> -->
+          <div class="invalid-feedback" v-if="errors.anh && errors.solan >0">{{ errors.anh }}</div>
         </div>
       </div>
       <div class="form-group row">
@@ -58,12 +61,12 @@
             type="text"
             name="sdt"
             v-model="khachhang.sdt"
-            v-bind:class="{ 'is-invalid': errors.sdt }"
-            @blur="validate()"
+            v-bind:class="{ 'is-invalid': errors.sdt && errors.solan >0  }"
+            @blur="errors.solan>0 ? validate() :null"
             class="form-control"
             id="sdt"
           />
-          <div class="invalid-feedback" v-if="errors.sdt">{{ errors.sdt }}</div>
+          <div class="invalid-feedback" v-if="errors.sdt && errors.solan >0">{{ errors.sdt }}</div>
         </div>
       </div>
       <div class="form-group row">
@@ -75,14 +78,13 @@
             type="text"
             name="nghenghiep"
             v-model="khachhang.nghenghiep"
-            v-bind:class="{ 'is-invalid': errors.nghenghiep }"
-            @blur="validate()"
+            v-bind:class="{ 'is-invalid': errors.nghenghiep && errors.solan >0  }"
+            @blur="errors.solan>0 ? validate() :null"
             class="form-control"
             id="nghenghiep"
           />
-          <div class="invalid-feedback" v-if="errors.nghenghiep">
-            {{ errors.nghenghiep }}
-          </div>
+          <div class="invalid-feedback" v-if="errors.nghenghiep && errors.solan >0">{{ errors.nghenghiep }}</div>
+
         </div>
       </div>
       <div class="form-group row">
@@ -92,14 +94,13 @@
             type="text"
             name="quequan"
             v-model="khachhang.quequan"
-            v-bind:class="{ 'is-invalid': errors.quequan }"
-            @blur="validate()"
+            v-bind:class="{ 'is-invalid': errors.quequan && errors.solan >0  }"
+            @blur="errors.solan>0 ? validate() :null"
             class="form-control"
             id="quequan"
           />
-          <div class="invalid-feedback" v-if="errors.quequan">
-            {{ errors.quequan }}
-          </div>
+          <div class="invalid-feedback" v-if="errors.quequan && errors.solan >0">{{ errors.quequan }}</div>
+
         </div>
       </div>
       <label for="quequan" class="col-sm-2 col-form-label"></label>
@@ -189,7 +190,16 @@ export default {
         nghenghiep: "",
         quequan: "",
         sdt: "",
+        anh:"",
+        solan:0
       };
+      console.log("file",this.file);
+      if(this.file===''){
+        this.errors.anh = "Ảnh CCCD không được trống";
+        isvalid = false;
+        console.log("ảnh rổng");
+
+      }
       if (!this.khachhang.hoten) {
         this.errors.hoten = "Họ tên khách hàng không được trống";
         isvalid = false;
@@ -249,94 +259,114 @@ export default {
     },
 
     async save() {
-      console.log(this.khachhang);
-      if (this.$route.params.sotk) {
-        if (this.$refs.file.files[0].name != this.khachhang.anhCCCD) {
-          axios
-            .put(
-              `http://localhost:3000/api/khachtro/${this.$route.params.sotk}`,
-              this.khachhang,
-              {
-                headers: {
-                  "Content-Type": "multipart/form-data",
-                },
-              }
-            )
-            .then(function () {
-              console.log("SUCCESS!!");
-            })
-            .then(() => {
-              this.$swal.fire("Đã cập nhật !", "", "success");
-            })
-            .catch(function () {
-              console.log("FAILURE!!");
-            });
+      if (this.validate()) {
+        if (this.$route.params.sotk) {
+          if (this.$refs.file.files[0].name != this.khachhang.anhCCCD) {
+            axios
+              .put(
+                `http://localhost:3000/api/khachtro/${this.$route.params.sotk}`,
+                this.khachhang,
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              )
+              .then(function () {
+                console.log("SUCCESS!!");
+              })
+              .then(() => {
+                this.$swal.fire("Đã cập nhật !", "", "success");
+              })
+              .catch(function () {
+                console.log("FAILURE!!");
+              });
+          } else {
+            let k = this.khachhang;
+            await khachhangService
+              .chinhsuaKHKhongAnh(this.$route.params.sotk, this.khachhang)
+              .then(function () {
+                console.log("SUCCESS!!");
+              })
+              .then(() => {
+                this.$swal.fire("Đã cập nhật !", "", "success");
+              })
+              .catch(function () {
+                console.log("FAILURE!!");
+              });
+          }
         } else {
-          console.log("chỉnh sửa k ảnh",this.khachhang);
-          let k=this.khachhang
-          await khachhangService.chinhsuaKHKhongAnh(this.$route.params.sotk,this.khachhang)
-            .then(function () {
-              console.log("SUCCESS!!");
+          axios
+            .post(`http://localhost:3000/api/khachtro/`, this.khachhang, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
             })
-            .then(() => {
-              this.$swal.fire("Đã cập nhật !", "", "success");
+            .then(function (res) {
+              console.log("SUCCESS!!");
+              return res;
+            })
+            .then((res) => {
+              this.$swal
+                .fire({
+                  title: `In tài khoản ?`,
+                  showDenyButton: false,
+                  confirmButtonText: "In",
+                })
+                .then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    this.$router.push({
+                      name: "khachhang.in",
+                      params: { STT: res.data.STT },
+                    });
+                  }
+                });
+              // this.$swal.fire("Đã thêm!", "", "success");
             })
             .catch(function () {
               console.log("FAILURE!!");
             });
         }
-      } else {
-        axios
-          .post(`http://localhost:3000/api/khachtro/`, this.khachhang, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then(function () {
-            console.log("SUCCESS!!");
-          })
-          .then(() => {
-            this.$swal.fire("Đã thêm!", "", "success");
-          })
-          .catch(function () {
-            console.log("FAILURE!!");
-          });
+        //   if (this.validate()) {
+        //     if (this.$route.params.sotk) {
+        //       this.thongbao = await khachhangService.chinhsuaKH(
+        //         this.$route.params.sotk,
+        //         this.khachhang
+        //       );
+
+        //       this.$swal.fire({
+        //         title: "Chỉnh sửa thành công",
+        //         confirmButtonText: "OK",
+        //       });
+        //       return;
+        //     }
+
+        //     this.thongbao = await khachhangService.themKH(this.khachhang);
+        //     this.$swal.fire({
+
+        //       title: "Bạn có muốn in tài khoản ?",
+        //       showDenyButton: false,
+        //       showCancelButton: true,
+        //       confirmButtonText: "In",
+        //     })
+        //     .then((result) => {
+        //       /* Read more about isConfirmed, isDenied below */
+        //       if (result.isConfirmed) {
+        //         this.$router.push({name:'khachhang.in',params:{STT:this.thongbao.STT}});
+        //       }
+        //     });
+        //   }
+        //   else{
+        //     this.$swal.fire({
+        //         title: "Bạn đã điền thiếu thông tin, hãy kiểm tra lại",
+        //         confirmButtonText: "OK",
+        //       });
+        // }
       }
-      //   if (this.validate()) {
-      //     if (this.$route.params.sotk) {
-      //       this.thongbao = await khachhangService.chinhsuaKH(
-      //         this.$route.params.sotk,
-      //         this.khachhang
-      //       );
-
-      //       this.$swal.fire({
-      //         title: "Chỉnh sửa thành công",
-      //         confirmButtonText: "OK",
-      //       });
-      //       return;
-      //     }
-
-      //     this.thongbao = await khachhangService.themKH(this.khachhang);
-      //     this.$swal.fire({
-
-      //       title: "Bạn có muốn in tài khoản ?",
-      //       showDenyButton: false,
-      //       showCancelButton: true,
-      //       confirmButtonText: "In",
-      //     })
-      //     .then((result) => {
-      //       /* Read more about isConfirmed, isDenied below */
-      //       if (result.isConfirmed) {
-      //         this.$router.push({name:'khachhang.in',params:{STT:this.thongbao.STT}});
-      //       }
-      //     });
-      //   }
-      //   else{
-      //     this.$swal.fire({
-      //         title: "Bạn đã điền thiếu thông tin, hãy kiểm tra lại",
-      //         confirmButtonText: "OK",
-      //       });
-      //   }
+      else{
+        this.errors.solan++;
+      }
     },
   },
 };

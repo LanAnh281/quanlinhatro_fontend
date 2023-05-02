@@ -113,7 +113,7 @@ export default {
         this.hoadon[index].tenphong=phong[0].tenphong;
       
       })
-      console.log(this.hoadon);
+   
     },
    
     async onDelete(mahd) {
@@ -133,7 +133,7 @@ export default {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             let message = await hoadonService.xoaHD(mahd);
-            console.log(message);
+            // console.log(message);
             this.$swal.fire("Đã xóa!", "", "success");
             this.layDSHD();
           }

@@ -65,7 +65,7 @@ export default {
       });
     },
     async toggle(ID) {
-      console.log('cap nhat');
+      // console.log('cap nhat');
      this.capnhatphieu.maphieu=ID;
     
       await phieugiahanService.chinhsuaTT(this.capnhatphieu);

@@ -115,7 +115,7 @@ export default {
     },
     async layHD() {
       this.hopdong = await hopdongService.layHDK();
-      console.log(this.hopdong);
+      // console.log(this.hopdong);
     },
     async layPhong() {
       this.phong = await phongService.layPhong(this.hopdong.maphong);
