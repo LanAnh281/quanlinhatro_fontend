@@ -262,9 +262,7 @@ export default {
     async save(){
 
         if(this.$route.params.mahd){
-            
-
-            this.hoadon.trangthai='chưa thanh toán';
+            this.hoadon.trangthai='Chưa thanh toán';
             let thongdiep=await ghidiennuocService.chinhsuaDN(this.hoadon);
             let hd= await hoadonService.chinhsuaHD(this.$route.params.mahd,this.hoadon);
 
@@ -285,7 +283,7 @@ export default {
         }
         else{
             let hd= await hoadonService.themHD(this.hoadon);
-            if(hd.mes){
+            if(hd){
                 this.$swal.fire({
                 title: "Tạo thành công hóa đơn",
                 confirmButtonText: "OK",

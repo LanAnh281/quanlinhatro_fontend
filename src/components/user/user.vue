@@ -86,7 +86,9 @@ export default {
         })
         .then(async (result) => {
           if (result.isConfirmed) {
-            let mes=await khachhangServices.chinhsuaKH(this.khachhang.STT, this.khachhang);
+            console.log(this.khachhang);
+            let mes=await khachhangServices
+              .chinhsuaKHKhongAnh(this.khachhang.STT, this.khachhang);
               this.$swal.fire("Đã lưu", "", "success");
             }
         }

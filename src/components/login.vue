@@ -19,7 +19,7 @@
           type="text"
           v-model="user.matk"
           v-bind:class="{ 'is-invalid': errors.matk }"
-          @blur="validate()"
+          @blur=" errors.solan>0 ? validate():null"
           name="matk"
           class="form-control"
           id="matk"
@@ -43,7 +43,7 @@
           type="password"
           v-model="user.matkhau"
           v-bind:class="{ 'is-invalid': errors.matkhau }"
-          @blur="validate()"
+          @blur=" errors.solan>0 ? validate():null"
           name="matkhau"
           class="form-control"
           id="inputPassword"
@@ -116,6 +116,7 @@ export default {
       this.errors = {
         matk: "",
         matkhau: "",
+        solan:0
       };
       if (!this.user.matk) {
         this.errors.matk = "Bạn cần nhập mã tài khoản";
@@ -166,6 +167,7 @@ export default {
           });
         }
       }
+      else this.errors.solan++;
     },
   
     }

@@ -102,7 +102,7 @@ export default {
   components: { Header, Sidebar },
   data() {
     return {
-      dieuhuong:{phong:true},
+      dieuhuong:{loaiphong:true},
 
       tacvu: { name: "", submit: "" },
       phong: { type: Object },

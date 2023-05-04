@@ -194,7 +194,7 @@ export default {
         solan:0
       };
       console.log("file",this.file);
-      if(this.file===''){
+      if(this.file==='' && this.tacvu.ten=='Thêm khách hàng'){
         this.errors.anh = "Ảnh CCCD không được trống";
         isvalid = false;
         console.log("ảnh rổng");
@@ -282,7 +282,7 @@ export default {
                 console.log("FAILURE!!");
               });
           } else {
-            let k = this.khachhang;
+            // let k = this.khachhang;
             await khachhangService
               .chinhsuaKHKhongAnh(this.$route.params.sotk, this.khachhang)
               .then(function () {

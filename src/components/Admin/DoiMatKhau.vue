@@ -18,7 +18,7 @@
               type="password"
               v-model="user.mk"
               v-bind:class="{ 'is-invalid': errors.matkhaumoi }"
-              @blur="validate()"
+              @blur=" errors.solan>0 ? validate():null"
               name="matkhaumoi"
               class="form-control"
               id="inputPasswordNew"
@@ -42,7 +42,7 @@
             type="password"
             v-model="user.matkhau"
             v-bind:class="{ 'is-invalid': errors.matkhau }"
-            @blur="validate()"
+            @blur=" errors.solan>0 ? validate():null"
             name="matkhau"
             class="form-control"
             id="inputPassword"
@@ -98,12 +98,8 @@ export default {
         matkcu: "",
         matkmoi: "",
         matkhau: "",
+        solan:0
       };
-      
-      
-    //   else if(){
-
-    //   }
       if (!this.user.mk) {
         this.errors.matkhaumoi = "Bạn cần nhập mật khẩu mới";
         valid = false;
@@ -123,12 +119,10 @@ export default {
       if (this.validate()) {
         let message= await taikhoanService.capnhatTK(this.user);
         if(message){
-          this.$swal.fire({
-            title: "Thay đổi mật khẩu thành công",
-            confirmButtonText: "OK",
-          });
+          this.$swal.fire("Đã cập nhật!", "", "success");
         }
       }
+      else this.errors.solan++;
     },
   
     }

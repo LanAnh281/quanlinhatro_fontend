@@ -5,7 +5,7 @@
     <button class="btn btn-primary mx-3" @click="chuathanhtoan" :class="{isPay:thanhtoan.name=='chưa thanh toán'}">Chưa thanh toán</button>
     <button class="btn btn-primary" @click="dathanhtoan"  :class="{isPay:thanhtoan.name=='đã thanh toán'}">Đã thanh toán</button>
 
-    <div   >
+    <div>
       <h3 class="text-center mt-5 mb-3">Danh sách hóa đơn {{thanhtoan.name}}</h3>
       <router-link :to="{ name: 'hoadon.them' }">
         <button class="btn btn-primary">+</button>
@@ -19,8 +19,8 @@
             <th scope="col">Phòng</th>
             <th scope="col">Tổng tiền</th>
             <!-- <th scope="col">Trạng thái</th> -->
-            <th scope="col">Thao tác</th>
-            <th scope="col" class="text-center">Phiếu thu</th>
+            <th scope="col" v-if="thanhtoan.name==='chưa thanh toán' ">Thao tác</th>
+            <th scope="col" class="text-center" v-if="thanhtoan.name==='chưa thanh toán'">Phiếu thu</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
             <td >{{ hd.tenphong }} </td>
             <td>{{ hd.tongtien }}</td>
             <!-- <td>{{ hd.trangthai }}</td> -->
-            <td>
+            <td v-if="thanhtoan.name==='chưa thanh toán'">
             &nbsp;
               <router-link
                 :to="{
@@ -49,8 +49,8 @@
                 v-on:click="onDelete(hd.mahd)"
               ></fa>
               <!-- </router-link> -->
-            </td>
-            <td class="text-center">
+            </td >
+            <td class="text-center" v-if="thanhtoan.name==='chưa thanh toán'">
               <router-link
               :to="{
                 name: 'phieuthu.chitiet',
@@ -105,7 +105,7 @@ export default {
       if(this.thanhtoan.name==='đã thanh toán')
       this.hoadon=this.hoadon.filter((hd)=>hd.trangthai==='Đã thanh toán')
       else {
-        this.hoadon=this.hoadon.filter((hd)=>hd.trangthai==='chưa thanh toán')
+        this.hoadon=this.hoadon.filter((hd)=>hd.trangthai==='Chưa thanh toán')
       }
       this.hoadon= this.hoadon.filter(async (h,index)=>{
         

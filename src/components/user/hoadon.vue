@@ -72,7 +72,7 @@ export default{
         this.hoadon= await hoadonServices.layDSHD();
        
         this.hoadon=this.hoadon.filter((hd,index)=>{
-          return (hd.maphong==this.hopdong.maphong && hd.trangthai=='chưa thanh toán');
+          return (hd.maphong==this.hopdong.maphong && hd.trangthai=='Chưa thanh toán');
         })
         
 
