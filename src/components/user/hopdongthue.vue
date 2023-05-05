@@ -68,7 +68,7 @@
             </p>
             <h6 class="w-100" style="height: 50px">Đại diện bên cho thuê</h6>
             <p style="height: 50px" class="pl-5"><i>(Đã ký)</i></p>
-            <p class="pl-5">{{ nhatro.hoten }}</p>
+            <p class="pl-3">{{ nhatro.hoten }}</p>
           </div>
         </div>
       </div>

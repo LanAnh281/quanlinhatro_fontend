@@ -20,7 +20,7 @@
             <th scope="col">Tổng tiền</th>
             <!-- <th scope="col">Trạng thái</th> -->
             <th scope="col" v-if="thanhtoan.name==='chưa thanh toán' ">Thao tác</th>
-            <th scope="col" class="text-center" v-if="thanhtoan.name==='chưa thanh toán'">Phiếu thu</th>
+            <th scope="col" class="text-center" >Phiếu thu</th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +50,7 @@
               ></fa>
               <!-- </router-link> -->
             </td >
-            <td class="text-center" v-if="thanhtoan.name==='chưa thanh toán'">
+            <td class="text-center" >
               <router-link
               :to="{
                 name: 'phieuthu.chitiet',
@@ -60,7 +60,7 @@
               <fa icon="info" class="style info"></fa>
             </router-link>
             &nbsp;
-              <router-link :to="{ name: 'phieuthu.them',params:{mahd:`${hd.mahd}`} }">
+              <router-link :to="{ name: 'phieuthu.them',params:{mahd:`${hd.mahd}`} }" v-if="thanhtoan.name==='chưa thanh toán'">
                 <fa
                 icon="plus"
               ></fa>
